@@ -26,7 +26,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
+  computed: {
+    ...mapGetters(['pagination']),
+  },
   methods: {
     getCurrentPage(page) {
       this.$store.dispatch('productsModule/getProducts', page);
