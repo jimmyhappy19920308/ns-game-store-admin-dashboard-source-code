@@ -36,7 +36,7 @@ export default {
     },
     updatePassword(e) {
       this.$store.dispatch('authModule/updatePassword', e.target.value);
-    }
+    },
   },
 };
 </script>
