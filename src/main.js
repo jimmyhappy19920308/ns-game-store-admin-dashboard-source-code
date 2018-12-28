@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Loading from 'vue-loading-overlay';
@@ -15,6 +16,7 @@ import date from './filters/date';
 
 Vue.component('Loading', Loading);
 
+Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
 Vue.use(VeeValidate, {
