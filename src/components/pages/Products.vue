@@ -30,7 +30,7 @@
         </tr>
       </tbody>
     </table>
-    <pagination-component :parent-pagination="pagination" @get-page="getProducts"></pagination-component>
+    <pagination-component></pagination-component>
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
