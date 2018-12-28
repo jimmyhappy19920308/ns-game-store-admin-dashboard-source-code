@@ -171,17 +171,7 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/products?page=${page}`;
-      vm.isLoading = true;
-      vm.$http.get(api).then(response => {
-        vm.products = response.data.products;
-        vm.pagination = response.data.pagination;
-        vm.isLoading = false;
-        // console.log(vm.products);
-      });
+      this.$store.dispatch('productsModule/getProducts');
     },
     productModal(isNew, item) {
       const vm = this;
