@@ -19,14 +19,7 @@ export default {
   },
   methods: {
     signOut() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/logout`;
-      vm.$http.post(api).then(response => {
-        console.log(response.data);
-        if (response.data.success) {
-          vm.$router.push('/login');
-        }
-      });
+      this.$store.dispatch('authModule/signOut');
     },
   },
 };
