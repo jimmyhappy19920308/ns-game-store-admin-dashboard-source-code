@@ -32,14 +32,7 @@ export default {
   },
   methods: {
     signIn() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/admin/signin`;
-      vm.$http.post(api, vm.user).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          vm.$router.push('/admin/products');
-        }
-      });
+      this.$store.dispatch('authModule/signIn');
     },
   },
 };
