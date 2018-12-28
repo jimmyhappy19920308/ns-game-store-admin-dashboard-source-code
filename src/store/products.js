@@ -30,4 +30,12 @@ export default {
       state.pagination = pagination;
     },
   },
+  getters: {
+    products(state) {
+      return state.products;
+    },
+    pagination(state) {
+      return state.pagination;
+    },
+  },
 };
