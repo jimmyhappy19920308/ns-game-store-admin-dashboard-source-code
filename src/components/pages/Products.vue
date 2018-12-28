@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="text-right">
       <button type="button" class="btn btn-primary mt-3" @click.prevent="productModal(true)">建立新的產品</button>
     </div>
@@ -164,7 +163,6 @@ export default {
       pagination: {},
       tempProduct: {},
       isNew: false,
-      isLoading: false,
       isUploadImage: false,
     };
   },
