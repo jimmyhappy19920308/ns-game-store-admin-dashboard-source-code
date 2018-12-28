@@ -19,6 +19,11 @@ export default new Vuex.Store({
       state.isLoading = payload;
     },
   },
+  getters: {
+    isLoading(state) {
+      return state.isLoading;
+    },
+  },
   modules: {
     productsModule,
   },
