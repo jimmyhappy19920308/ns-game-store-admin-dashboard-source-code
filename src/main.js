@@ -13,6 +13,7 @@ import App from './App.vue';
 import router from './router';
 import currencyFilter from './filters/currency';
 import date from './filters/date';
+import store from './store';
 
 Vue.component('loading', Loading);
 
@@ -32,6 +33,7 @@ axios.defaults.withCredentials = true;
 Vue.config.productionTip = false;
 
 new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount('#app');
