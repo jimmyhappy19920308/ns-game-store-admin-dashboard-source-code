@@ -4,9 +4,9 @@
       <img class="mb-4" src="" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" :value="user.username" @input="updateUserName" required autofocus>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" :value="username" @input="updateUserName" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required :value="user.password" @input="updatePassword">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required :value="password" @input="updatePassword">
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
@@ -21,19 +21,22 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      user: {
-        username: '',
-        password: '',
-      },
-    };
+  computed: {
+    ...mapGetters('authModule', ['username', 'password']),
   },
   methods: {
     signIn() {
       this.$store.dispatch('authModule/signIn');
     },
+    updateUserName(e) {
+      this.$store.dispatch('authModule/updateUserName', e.target.value);
+    },
+    updatePassword(e) {
+      this.$store.dispatch('authModule/updatePassword', e.target.value);
+    }
   },
 };
 </script>
