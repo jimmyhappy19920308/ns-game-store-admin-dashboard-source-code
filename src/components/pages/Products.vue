@@ -153,14 +153,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import $ from 'jquery';
 import Pagination from './Pagination.vue';
 
 export default {
   data() {
     return {
-      products: [],
-      pagination: {},
       tempProduct: {},
       isNew: false,
       isUploadImage: false,
@@ -168,6 +167,9 @@ export default {
   },
   components: {
     'pagination-component': Pagination,
+  },
+  computed: {
+    ...mapGetters('productsModule', ['products', 'pagination']),
   },
   methods: {
     getProducts(page = 1) {
