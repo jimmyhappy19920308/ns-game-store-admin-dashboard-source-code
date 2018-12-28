@@ -27,19 +27,9 @@
 
 <script>
 export default {
-  props: {
-    parentPagination: {
-      type: Object,
-    },
-  },
-  data() {
-    return {};
-  },
-  computed: {},
   methods: {
     getCurrentPage(page) {
-      const vm = this;
-      vm.$emit('get-page', page);
+      this.$store.dispatch('productsModule/getProducts', page);
     },
   },
 };
