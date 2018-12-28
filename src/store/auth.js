@@ -19,10 +19,24 @@ export default {
         }
       });
     },
+    updateUserName(context, userName) {
+      context.commit('USER_NAME', userName);
+    },
+    updatePassword(context, password) {
+      context.commit('PASSWORD', password);
+    },
+  },
+  mutations: {
+    USER_NAME(state, userName) {
+      state.username = userName;
+    },
+    PASSWORD(state, password) {
+      state.password = password;
+    },
   },
   getters: {
     user(state) {
-      return state;
+      return state.user;
     },
   },
 };
