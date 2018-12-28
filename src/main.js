@@ -14,7 +14,7 @@ import router from './router';
 import currencyFilter from './filters/currency';
 import date from './filters/date';
 
-Vue.component('Loading', Loading);
+Vue.component('loading', Loading);
 
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
