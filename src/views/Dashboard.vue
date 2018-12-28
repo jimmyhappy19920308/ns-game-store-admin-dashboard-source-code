@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <loading :active.sync="isLoading"></loading>
     <nav-bar></nav-bar>
     <alert-message></alert-message>
     <div class="container-fluid">
