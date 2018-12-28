@@ -5,6 +5,7 @@ export default {
   state: {
     products: [],
     tempProduct: {},
+    pagination: {},
   },
   actions: {
     getProducts(context, page) {
@@ -16,6 +17,7 @@ export default {
 
       axios.get(api).then(response => {
         context.commit('PRODUCTS', response.data.products);
+        context.commit('PAGINATION', response.data.pagination);
         context.dispatch('updateLoading', false, { root: true });
       });
     },
@@ -23,6 +25,9 @@ export default {
   mutations: {
     PRODUCTS(state, products) {
       state.products = products;
+    },
+    PAGINATION(state, pagination) {
+      state.pagination = pagination;
     },
   },
 };
