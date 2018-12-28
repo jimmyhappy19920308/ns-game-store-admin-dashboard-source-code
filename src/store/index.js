@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import productsModule from './products';
 
 Vue.use(Vuex);
 
@@ -17,5 +18,8 @@ export default new Vuex.Store({
     LOADING(state, payload) {
       state.isLoading = payload;
     },
+  },
+  modules: {
+    productsModule,
   },
 });
