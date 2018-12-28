@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Sidebar from '../components/Sidebar.vue';
 import Navbar from '../components/Navbar.vue';
 import AlertMessage from '../components/AlertMessage.vue';
@@ -30,6 +31,9 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
     };
+  },
+  computed: {
+    ...mapGetters(['isLoading']),
   },
 };
 </script>
