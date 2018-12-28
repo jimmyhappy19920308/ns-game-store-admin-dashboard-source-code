@@ -28,15 +28,18 @@ export default {
   },
   mutations: {
     USER_NAME(state, userName) {
-      state.username = userName;
+      state.user.username = userName;
     },
     PASSWORD(state, password) {
-      state.password = password;
+      state.user.password = password;
     },
   },
   getters: {
-    user(state) {
-      return state.user;
+    username(state) {
+      return state.user.username;
+    },
+    password(state) {
+      return state.user.password;
     },
   },
 };
