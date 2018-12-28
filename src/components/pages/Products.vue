@@ -173,7 +173,7 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
-      this.$store.dispatch('productsModule/getProducts');
+      this.$store.dispatch('productsModule/getProducts', page);
     },
     productModal(isNew, item) {
       const vm = this;
