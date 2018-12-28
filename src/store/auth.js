@@ -19,6 +19,14 @@ export default {
         }
       });
     },
+    signOut() {
+      const api = `${process.env.VUE_APP_API_PATH}/logout`;
+      axios.post(api).then(response => {
+        if (response.data.success) {
+          router.push('/login');
+        }
+      });
+    },
     updateUserName(context, userName) {
       context.commit('USER_NAME', userName);
     },
