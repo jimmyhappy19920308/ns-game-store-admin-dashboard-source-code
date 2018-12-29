@@ -22,6 +22,17 @@ export default {
         context.dispatch('updateLoading', false, { root: true });
       });
     },
+    productModal(context, { isNew, item }) {
+      if (isNew) {
+        context.commit('TEMP_PRODUCT', {});
+        context.commit('IS_NEW', true);
+      } else {
+        context.commit('TEMP_PRODUCT', Object.assign({}, item));
+        context.commit('IS_NEW', false);
+      }
+
+      $('#productModal').modal('show');
+    },
   },
   mutations: {
     PRODUCTS(state, products) {
