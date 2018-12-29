@@ -7,6 +7,7 @@ export default {
     products: [],
     tempProduct: {},
     pagination: {},
+    isNew: false,
   },
   actions: {
     getProducts(context, page) {
@@ -54,6 +55,12 @@ export default {
     },
     pagination(state) {
       return state.pagination;
+    },
+    tempProduct(state) {
+      return state.tempProduct;
+    },
+    isNew(state) {
+      return state.isNew;
     },
   },
 };
