@@ -41,6 +41,12 @@ export default {
     PAGINATION(state, pagination) {
       state.pagination = pagination;
     },
+    TEMP_PRODUCT(state, tempProduct) {
+      state.tempProduct = tempProduct;
+    },
+    IS_NEW(state, isNew) {
+      state.isNew = isNew;
+    },
   },
   getters: {
     products(state) {
