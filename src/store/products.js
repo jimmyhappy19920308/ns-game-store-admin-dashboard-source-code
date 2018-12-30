@@ -34,6 +34,11 @@ export default {
 
       $('#productModal').modal('show');
     },
+    delProductModal(context, item) {
+      context.commit('TEMP_PRODUCT', Object.assign({}, item));
+
+      $('#delProductModal').modal('show');
+    },
   },
   mutations: {
     PRODUCTS(state, products) {
