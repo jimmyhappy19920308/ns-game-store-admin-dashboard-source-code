@@ -39,6 +39,38 @@ export default {
 
       $('#delProductModal').modal('show');
     },
+    updateProduct(context) {
+      let api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/product`;
+      let httpMethod = 'post';
+      if (!context.state.isNew) {
+        api = `${process.env.VUE_APP_API_PATH}/api/${
+          process.env.VUE_APP_CUSTOM_PATH
+        }/admin/product/${context.state.tempProduct.id}`;
+        httpMethod = 'put';
+      }
+      axios[httpMethod](api, { data: context.state.tempProduct }).then(response => {
+        // console.log(response.data);
+        if (response.data.success) {
+          $('#productModal').modal('hide');
+          context.dispatch('productsModule/getProducts', null, { root: true });
+          if (context.state.isNew) {
+            console.log('新增成功');
+          } else {
+            console.log('編輯成功');
+          }
+        } else {
+          $('#productModal').modal('hide');
+          context.dispatch('productsModule/getProducts', null, { root: true });
+          if (context.state.isNew) {
+            console.log('新增失敗');
+          } else {
+            console.log('編輯失敗');
+          }
+        }
+      });
+    },
   },
   mutations: {
     PRODUCTS(state, products) {
