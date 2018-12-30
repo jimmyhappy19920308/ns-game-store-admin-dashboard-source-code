@@ -174,7 +174,7 @@ export default {
     },
     IMAGE_URL(state, imageUrl) {
       state.tempProduct.imageUrl = imageUrl;
-    }
+    },
   },
   getters: {
     products(state) {

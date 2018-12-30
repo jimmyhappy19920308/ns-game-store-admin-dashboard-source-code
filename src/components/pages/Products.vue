@@ -168,7 +168,21 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('productsModule', ['products', 'pagination', 'tempProduct', 'isNew', 'title', 'category', 'originPrice', 'price', 'unit', 'description', 'content', 'isEnabled', 'imageUrl']),
+    ...mapGetters('productsModule', [
+      'products',
+      'pagination',
+      'tempProduct',
+      'isNew',
+      'title',
+      'category',
+      'originPrice',
+      'price',
+      'unit',
+      'description',
+      'content',
+      'isEnabled',
+      'imageUrl',
+    ]),
   },
   methods: {
     getProducts(page = 1) {
@@ -201,7 +215,9 @@ export default {
       });
     },
     uploadImage() {
+      const vm = this;
       const uploadedImage = vm.$refs.files.files[0];
+
       this.$store.dispatch('productsModule/updateImage', uploadedImage);
 
       vm.$refs.files.value = '';
