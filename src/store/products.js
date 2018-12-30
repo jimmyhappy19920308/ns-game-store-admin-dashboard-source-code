@@ -83,10 +83,10 @@ export default {
         }
       });
     },
-    removeProduct(context) {
+    removeProduct(context, id) {
       const api = `${process.env.VUE_APP_API_PATH}/api/${
         process.env.VUE_APP_CUSTOM_PATH
-      }/admin/product/${context.tempProduct.id}`;
+      }/admin/product/${id}`;
       axios.delete(api).then(response => {
         // console.log(response.data);
         if (response.data.success) {

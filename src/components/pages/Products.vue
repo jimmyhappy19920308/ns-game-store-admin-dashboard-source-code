@@ -145,7 +145,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click.prevent="removeProduct">確認刪除</button>
+            <button type="button" class="btn btn-danger" @click.prevent="removeProduct(tempProduct.id)">確認刪除</button>
           </div>
         </div>
       </div>
@@ -193,8 +193,8 @@ export default {
     updateProduct() {
       this.$store.dispatch('productsModule/updateProduct');
     },
-    removeProduct() {
-      this.$store.dispatch('productsModule/removeProduct');
+    removeProduct(id) {
+      this.$store.dispatch('productsModule/removeProduct', id);
     },
     uploadImage() {
       const vm = this;
