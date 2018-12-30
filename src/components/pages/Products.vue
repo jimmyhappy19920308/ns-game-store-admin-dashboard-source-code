@@ -167,7 +167,7 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('productsModule', ['products', 'pagination','tempProduct', 'isNew']),
+    ...mapGetters('productsModule', ['products', 'pagination', 'tempProduct', 'isNew']),
   },
   methods: {
     getProducts(page = 1) {
