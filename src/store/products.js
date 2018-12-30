@@ -147,9 +147,6 @@ export default {
     updateIsEnabled(context, isEnabled) {
       context.commit('IS_ENABLED', isEnabled);
     },
-    updateImageUrl(context, imageUrl) {
-      context.commit('IMAGE_URL', imageUrl);
-    },
   },
   mutations: {
     PRODUCTS(state, products) {
