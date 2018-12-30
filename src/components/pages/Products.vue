@@ -10,7 +10,7 @@
         <th width="120">原價</th>
         <th width="120">售價</th>
         <th width="120">使否啟用</th>
-        <th width="120">編輯</th>
+        <th>編輯</th>
       </thead>
       <tbody>
         <tr v-for="item in products" :key="item.id">
@@ -23,7 +23,7 @@
             <span v-else>未啟用</span>
           </td>
           <td>
-            <button type="button" class="btn btn-outline-primary btn-sm" @click.prevent="productModal(false, item)">編輯</button>
+            <button type="button" class="btn btn-outline-primary btn-sm mr-3" @click.prevent="productModal(false, item)">編輯</button>
             <button type="button" class="btn btn-outline-danger btn-sm" @click.prevent="delProductModal(item)">刪除</button>
           </td>
 
