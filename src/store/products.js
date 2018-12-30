@@ -19,6 +19,7 @@ export default {
     },
     pagination: {},
     isNew: false,
+    isUploadImage: false,
   },
   actions: {
     getProducts(context, page) {
@@ -81,6 +82,30 @@ export default {
           }
         }
       });
+    },
+    uploadImage(context, uploadedImage) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/upload`;
+      // console.log(vm);
+      const formData = new FormData();
+      formData.append('file-to-upload', uploadedImage);
+      context.commit('IS_UPLOAD_IMAGE', true);
+      axios
+        .post(api, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then(response => {
+          if (response.data.success) {
+            context.commit('IMAGE_URL', response.data.imageUrl);
+            context.commit('IS_UPLOAD_IMAGE', false);
+          } else {
+            // vm.$bus.$emit('message:push', response.data.message, 'danger');
+            context.commit('IS_UPLOAD_IMAGE', false);
+          }
+        });
     },
     updateTitle(context, title) {
       context.commit('TITLE', title);
