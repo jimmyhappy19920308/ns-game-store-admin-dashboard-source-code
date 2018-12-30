@@ -160,8 +160,6 @@ import Pagination from './Pagination.vue';
 export default {
   data() {
     return {
-      tempProduct: {},
-      isNew: false,
       isUploadImage: false,
     };
   },
