@@ -58,25 +58,25 @@
                   <input type="file" id="customFile" class="form-control"
                     ref="files" @change="uploadImage">
                 </div>
-                <img :src="tempProduct.imageUrl"
+                <img :src="imageUrl"
                   class="img-fluid" alt="">
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
                   <label for="title">標題</label>
-                  <input type="text" class="form-control" v-model="tempProduct.title" id="title"
+                  <input type="text" class="form-control" :value="title" @input="updateTitle" id="title"
                     placeholder="請輸入標題">
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="category">分類</label>
-                    <input type="text" class="form-control" v-model="tempProduct.category" id="category"
+                    <input type="text" class="form-control" :value="category" @input="updateCategory" id="category"
                       placeholder="請輸入分類">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="price">單位</label>
-                    <input type="unit" class="form-control" v-model="tempProduct.unit" id="unit"
+                    <input type="unit" class="form-control" :value="unit" @input="updateUnit" id="unit"
                       placeholder="請輸入單位">
                   </div>
                 </div>
@@ -84,12 +84,12 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                   <label for="origin_price">原價</label>
-                    <input type="number" class="form-control" v-model="tempProduct.origin_price" id="origin_price"
+                    <input type="number" class="form-control" :value="originPrice" @input="updateOriginPrice" id="origin_price"
                       placeholder="請輸入原價">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="price">售價</label>
-                    <input type="number" class="form-control" v-model="tempProduct.price" id="price"
+                    <input type="number" class="form-control" :value="price" @input="updatePrice" id="price"
                       placeholder="請輸入售價">
                   </div>
                 </div>
@@ -97,18 +97,19 @@
 
                 <div class="form-group">
                   <label for="description">產品描述</label>
-                  <textarea type="text" class="form-control" v-model="tempProduct.description" id="description"
+                  <textarea type="text" class="form-control" :value="description" @input="updateDescription" id="description"
                     placeholder="請輸入產品描述"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="content">說明內容</label>
-                  <textarea type="text" class="form-control" v-model="tempProduct.content" id="content"
+                  <textarea type="text" class="form-control" :value="content" @input="updateContent" id="content"
                     placeholder="請輸入產品說明內容"></textarea>
                 </div>
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
-                    v-model="tempProduct.is_enabled"
+                    :value="isEnabled"
+                    @input="updateIsEnabled"
                     :true-value="1"
                     :false-value="0"
                     id="is_enabled">
@@ -140,7 +141,7 @@
             </button>
           </div>
           <div class="modal-body">
-            是否刪除 <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
+            是否刪除 <strong class="text-danger">{{ title }}</strong> 商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
@@ -167,7 +168,7 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('productsModule', ['products', 'pagination', 'tempProduct', 'isNew']),
+    ...mapGetters('productsModule', ['products', 'pagination', 'tempProduct', 'isNew', 'title', 'category', 'originPrice', 'price', 'unit', 'description', 'content', 'isEnabled', 'imageUrl']),
   },
   methods: {
     getProducts(page = 1) {
@@ -226,6 +227,33 @@ export default {
           }
         });
       vm.$refs.files.value = '';
+    },
+    updateTitle(e) {
+      this.$store.dispatch('productsModule/updateTitle', e.target.value);
+    },
+    updateCategory(e) {
+      this.$store.dispatch('productsModule/updateCategory', e.target.value);
+    },
+    updateOriginPrice(e) {
+      this.$store.dispatch('productsModule/updateOriginPrice', e.target.value);
+    },
+    updatePrice(e) {
+      this.$store.dispatch('productsModule/updatePrice', e.target.value);
+    },
+    updateUnit(e) {
+      this.$store.dispatch('productsModule/updateUnit', e.target.value);
+    },
+    updateDescription(e) {
+      this.$store.dispatch('productsModule/updateDescription', e.target.value);
+    },
+    updateContent(e) {
+      this.$store.dispatch('productsModule/updateContent', e.target.value);
+    },
+    updateIsEnabled(e) {
+      this.$store.dispatch('productsModule/updateIsEnabled', e.target.value);
+    },
+    updateImageUrl(e) {
+      this.$store.dispatch('productsModule/updateImageUrl', e.target.value);
     },
   },
   created() {
