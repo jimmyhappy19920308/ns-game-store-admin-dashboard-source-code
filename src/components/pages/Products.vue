@@ -201,31 +201,9 @@ export default {
       });
     },
     uploadImage() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/upload`;
-      // console.log(vm);
       const uploadedImage = vm.$refs.files.files[0];
-      const formData = new FormData();
-      formData.append('file-to-upload', uploadedImage);
-      vm.isUploadImage = true;
-      vm.$http
-        .post(api, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        .then(response => {
-          vm.isUploadImage = false;
-          // console.log(response.data);
-          if (response.data.success) {
-            // vm.tempProduct.imageUrl = response.data.imageUrl;
-            vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
-          } else {
-            vm.$bus.$emit('message:push', response.data.message, 'danger');
-          }
-        });
+      this.$store.dispatch('productsModule/updateImage', uploadedImage);
+
       vm.$refs.files.value = '';
     },
     updateTitle(e) {
