@@ -159,11 +159,6 @@ import $ from 'jquery';
 import Pagination from './Pagination.vue';
 
 export default {
-  data() {
-    return {
-      isUploadImage: false,
-    };
-  },
   components: {
     'pagination-component': Pagination,
   },
@@ -182,6 +177,7 @@ export default {
       'content',
       'isEnabled',
       'imageUrl',
+      'isUploadImage',
     ]),
   },
   methods: {
@@ -218,7 +214,7 @@ export default {
       const vm = this;
       const uploadedImage = vm.$refs.files.files[0];
 
-      this.$store.dispatch('productsModule/updateImage', uploadedImage);
+      this.$store.dispatch('productsModule/uploadImage', uploadedImage);
 
       vm.$refs.files.value = '';
     },
