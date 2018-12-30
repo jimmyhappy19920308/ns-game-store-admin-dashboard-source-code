@@ -246,9 +246,6 @@ export default {
     updateIsEnabled(e) {
       this.$store.dispatch('productsModule/updateIsEnabled', e.target.value);
     },
-    updateImageUrl(e) {
-      this.$store.dispatch('productsModule/updateImageUrl', e.target.value);
-    },
   },
   created() {
     const vm = this;
