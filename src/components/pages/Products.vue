@@ -176,55 +176,13 @@ export default {
       this.$store.dispatch('productsModule/getProducts', page);
     },
     productModal(isNew, item) {
-      const vm = this;
-
-      if (isNew) {
-        vm.tempProduct = {};
-        vm.isNew = true;
-      } else {
-        vm.tempProduct = Object.assign({}, item);
-        vm.isNew = false;
-      }
-
-      $('#productModal').modal('show');
+      this.$store.dispatch('productsModule/productModal', { isNew, item });
     },
     delProductModal(item) {
-      const vm = this;
-      vm.tempProduct = Object.assign({}, item);
-      $('#delProductModal').modal('show');
+      this.$store.dispatch('productsModule/delProductModal', item);
     },
     updateProduct() {
-      const vm = this;
-      let api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/product`;
-      let httpMethod = 'post';
-      if (!vm.isNew) {
-        api = `${process.env.VUE_APP_API_PATH}/api/${
-          process.env.VUE_APP_CUSTOM_PATH
-        }/admin/product/${vm.tempProduct.id}`;
-        httpMethod = 'put';
-      }
-      vm.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          $('#productModal').modal('hide');
-          vm.getProducts();
-          if (vm.isNew) {
-            console.log('新增成功');
-          } else {
-            console.log('編輯成功');
-          }
-        } else {
-          $('#productModal').modal('hide');
-          vm.getProducts();
-          if (vm.isNew) {
-            console.log('新增失敗');
-          } else {
-            console.log('編輯失敗');
-          }
-        }
-      });
+      this.$store.dispatch('productsModule/updateProduct');
     },
     removeProduct() {
       const vm = this;
