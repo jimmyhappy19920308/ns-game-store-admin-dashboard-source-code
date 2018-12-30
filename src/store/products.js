@@ -83,6 +83,22 @@ export default {
         }
       });
     },
+    removeProduct(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/product/${context.tempProduct.id}`;
+      axios.delete(api).then(response => {
+        // console.log(response.data);
+        if (response.data.success) {
+          $('#delProductModal').modal('hide');
+          context.dispatch('getProducts');
+        } else {
+          $('#delProductModal').modal('hide');
+          context.dispatch('getProducts');
+          console.log('商品刪除失敗');
+        }
+      });
+    },
     uploadImage(context, uploadedImage) {
       const api = `${process.env.VUE_APP_API_PATH}/api/${
         process.env.VUE_APP_CUSTOM_PATH

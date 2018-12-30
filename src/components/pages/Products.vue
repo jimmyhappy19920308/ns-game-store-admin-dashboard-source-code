@@ -194,21 +194,7 @@ export default {
       this.$store.dispatch('productsModule/updateProduct');
     },
     removeProduct() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/product/${vm.tempProduct.id}`;
-      vm.$http.delete(api).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          $('#delProductModal').modal('hide');
-          vm.getProducts();
-        } else {
-          $('#delProductModal').modal('hide');
-          vm.getProducts();
-          console.log('商品刪除失敗');
-        }
-      });
+      this.$store.dispatch('productsModule/removeProduct');
     },
     uploadImage() {
       const vm = this;
