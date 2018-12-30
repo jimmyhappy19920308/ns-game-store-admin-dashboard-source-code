@@ -82,6 +82,33 @@ export default {
         }
       });
     },
+    updateTitle(context, title) {
+      context.commit('TITLE', title);
+    },
+    updateCategory(context, category) {
+      context.commit('CATEGORY', category);
+    },
+    updateOriginPrice(context, originPrice) {
+      context.commit('ORIGIN_PRICE', originPrice);
+    },
+    updatePrice(context, price) {
+      context.commit('PRICE', price);
+    },
+    updateUnit(context, unit) {
+      context.commit('UNIT', unit);
+    },
+    updateDescription(context, description) {
+      context.commit('DESCRIPTION', description);
+    },
+    updateContent(context, content) {
+      context.commit('CONTENT', content);
+    },
+    updateIsEnabled(context, isEnabled) {
+      context.commit('IS_ENABLED', isEnabled);
+    },
+    updateImageUrl(context, imageUrl) {
+      context.commit('IMAGE_URL', imageUrl);
+    },
   },
   mutations: {
     PRODUCTS(state, products) {
@@ -96,6 +123,33 @@ export default {
     IS_NEW(state, isNew) {
       state.isNew = isNew;
     },
+    TITLE(state, title) {
+      state.tempProduct.title = title;
+    },
+    CATEGORY(state, category) {
+      state.tempProduct.category = category;
+    },
+    ORIGIN_PRICE(state, originPrice) {
+      state.tempProduct.origin_price = originPrice;
+    },
+    PRICE(state, price) {
+      state.tempProduct.price = price;
+    },
+    UNIT(state, unit) {
+      state.tempProduct.unit = unit;
+    },
+    DESCRIPTION(state, description) {
+      state.tempProduct.description = description;
+    },
+    CONTENT(state, content) {
+      state.tempProduct.content = content;
+    },
+    IS_ENABLED(state, isEnabled) {
+      state.tempProduct.is_enabled = isEnabled;
+    },
+    IMAGE_URL(state, imageUrl) {
+      state.tempProduct.imageUrl = imageUrl;
+    }
   },
   getters: {
     products(state) {
@@ -115,6 +169,9 @@ export default {
     },
     category(state) {
       return state.tempProduct.category;
+    },
+    originPrice(state) {
+      return state.tempProduct.origin_price;
     },
     price(state) {
       return state.tempProduct.price;
