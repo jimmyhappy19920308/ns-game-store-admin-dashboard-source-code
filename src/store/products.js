@@ -175,6 +175,9 @@ export default {
     IMAGE_URL(state, imageUrl) {
       state.tempProduct.imageUrl = imageUrl;
     },
+    IS_UPLOAD_IMAGE(state, isUploadImage) {
+      state.isUploadImage = isUploadImage;
+    },
   },
   getters: {
     products(state) {
@@ -215,6 +218,9 @@ export default {
     },
     imageUrl(state) {
       return state.tempProduct.imageUrl;
+    },
+    isUploadImage(state) {
+      return state.isUploadImage;
     },
   },
 };
