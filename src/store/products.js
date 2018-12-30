@@ -110,5 +110,29 @@ export default {
     isNew(state) {
       return state.isNew;
     },
+    title(state) {
+      return state.tempProduct.title;
+    },
+    category(state) {
+      return state.tempProduct.category;
+    },
+    price(state) {
+      return state.tempProduct.price;
+    },
+    unit(state) {
+      return state.tempProduct.unit;
+    },
+    description(state) {
+      return state.tempProduct.description;
+    },
+    content(state) {
+      return state.tempProduct.content;
+    },
+    isEnabled(state) {
+      return state.tempProduct.is_enabled;
+    },
+    imageUrl(state) {
+      return state.tempProduct.imageUrl;
+    },
   },
 };
