@@ -69,6 +69,7 @@ export default {
       }/admin/orders?page=${page}`;
 
       context.dispatch('updateLoading', true, { root: true });
+
       axios.get(api).then(response => {
         // console.log(response.data);
         if (response.data.success) {
@@ -80,6 +81,11 @@ export default {
           console.log(response.data.message);
         }
       });
+    },
+  },
+  mutations: {
+    ORDERS(state, orders) {
+      state.orders = orders;
     },
   },
   getters: {
