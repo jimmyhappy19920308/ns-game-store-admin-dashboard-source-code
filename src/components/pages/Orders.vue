@@ -133,6 +133,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import $ from 'jquery';
 import Pagination from './Pagination.vue';
 
@@ -140,68 +141,8 @@ export default {
   components: {
     'pagination-component': Pagination,
   },
-  data() {
-    return {
-      isLoading: false,
-      pagination: {},
-      orders: [
-        {
-          create_at: 154343432,
-          id: '',
-          is_paid: false,
-          message: '',
-          paid_date: 1523539924,
-          payment_method: '',
-          products: [
-            {
-              id: '',
-              product_id: '',
-              qty: '3',
-              product: {
-                title: '',
-                unit: '',
-              },
-            },
-          ],
-          total: 100,
-          user: {
-            address: '',
-            email: '',
-            name: '',
-            tel: '',
-          },
-          num: 1,
-        },
-      ],
-      tempOrder: {
-        create_at: 154343432,
-        id: '',
-        is_paid: false,
-        message: '',
-        paid_date: 1523539924,
-        payment_method: '',
-        products: [
-          {
-            id: '',
-            product_id: '',
-            qty: '3',
-            product: {
-              title: '',
-              unit: '',
-            },
-          },
-        ],
-        total: 100,
-        user: {
-          address: '',
-          email: '',
-          name: '',
-          tel: '',
-        },
-        num: 1,
-      },
-      newDate: 0,
-    };
+  computed: {
+    ...mapGetters('ordersModule', ['orders', 'newDate', 'tempOrder']),
   },
   methods: {
     getOrders(page = 1) {
