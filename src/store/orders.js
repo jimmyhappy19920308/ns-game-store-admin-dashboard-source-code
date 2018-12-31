@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 
 export default {
   namespaced: true,
@@ -81,6 +82,22 @@ export default {
           console.log(response.data.message);
         }
       });
+    },
+    editOrderModal(context, item) {
+      // vm.tempOrder = Object.assign({}, item);
+      context.commit('TEMP_ORDER', Object.assign({}, item));
+      const dates = new Date(context.state.tempOrder.create_at * 1000);
+      const year = dates.getFullYear();
+      const month = dates.getMonth() + 1;
+      const date = dates.getDate();
+      // vm.tempOrder.total = parseInt(vm.tempOrder.total, 10);
+      // vm.$set(vm.tempOrder, 'total', parseInt(vm.tempOrder.total, 10));
+      context.commit('TOTAL', parseInt(context.state.tempOrder.total, 10));
+
+      $('#orderModal').modal('show');
+
+      // vm.newDate = `${year}-${month}-${date}`;
+      context.commit('NEW_DATE', `${year}-${month}-${date}`);
     },
   },
   mutations: {

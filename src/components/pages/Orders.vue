@@ -149,18 +149,7 @@ export default {
       this.$store.dispatch('ordersModule/getOrders', page);
     },
     editOrderModal(item) {
-      const vm = this;
-
-      vm.tempOrder = Object.assign({}, item);
-      const dates = new Date(vm.tempOrder.create_at * 1000);
-      const year = dates.getFullYear();
-      const month = dates.getMonth() + 1;
-      const date = dates.getDate();
-      // vm.tempOrder.total = parseInt(vm.tempOrder.total, 10);
-      vm.$set(vm.tempOrder, 'total', parseInt(vm.tempOrder.total, 10));
-
-      $('#orderModal').modal('show');
-      vm.newDate = `${year}-${month}-${date}`;
+      this.$store.dispatch('ordersModule/editOrderModal', item);
     },
     delOrderModal(item) {
       const vm = this;
