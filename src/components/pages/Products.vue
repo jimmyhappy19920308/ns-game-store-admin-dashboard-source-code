@@ -141,7 +141,7 @@
             </button>
           </div>
           <div class="modal-body">
-            是否刪除 <strong class="text-danger">{{ title }}</strong> 商品(刪除後將無法恢復)。
+            是否刪除 <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
@@ -167,15 +167,6 @@ export default {
       'pagination',
       'tempProduct',
       'isNew',
-      'title',
-      'category',
-      'originPrice',
-      'price',
-      'unit',
-      'description',
-      'content',
-      'isEnabled',
-      'imageUrl',
       'isUploadImage',
     ]),
   },
