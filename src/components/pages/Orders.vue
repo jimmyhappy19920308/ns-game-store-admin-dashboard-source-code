@@ -142,7 +142,7 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('ordersModule', ['orders', 'newDate', 'tempOrder']),
+    ...mapGetters('ordersModule', ['orders', 'newDate', 'tempOrder', 'pagination']),
   },
   methods: {
     getOrders(page = 1) {
