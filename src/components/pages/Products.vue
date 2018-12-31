@@ -170,7 +170,7 @@ export default {
     ]),
     isEnabled: {
       get() {
-        return this.tempProduct.is_enabled;
+        return this.$store.state.productsModule.tempProduct.is_enabled;
       },
       set(value) {
         this.$store.commit('productsModule/IS_ENABLED', value);
