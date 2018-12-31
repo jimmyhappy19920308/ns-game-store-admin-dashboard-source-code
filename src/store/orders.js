@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
   namespaced: true,
   state: {
@@ -59,6 +61,26 @@ export default {
       num: 1,
     },
     newDate: 0,
+  },
+  actions: {
+    getOrders(context, page) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/orders?page=${page}`;
+
+      context.dispatch('updateLoading', true, { root: true });
+      axios.get(api).then(response => {
+        // console.log(response.data);
+        if (response.data.success) {
+          context.commit('ORDERS', response.data.orders.filter(order => !order.isRemove));
+          context.commit('PAGINATION', response.data.pagination);
+          context.dispatch('updateLoading', false, { root: true });
+        } else {
+          context.dispatch('updateLoading', false, { root: true });
+          console.log(response.data.message);
+        }
+      });
+    },
   },
   getters: {
     orders(state) {

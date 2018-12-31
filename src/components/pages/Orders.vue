@@ -146,23 +146,7 @@ export default {
   },
   methods: {
     getOrders(page = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/orders?page=${page}`;
-
-      vm.isLoading = true;
-      vm.$http.get(api).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          vm.orders = response.data.orders.filter(order => !order.isRemove);
-          vm.pagination = response.data.pagination;
-          vm.isLoading = false;
-        } else {
-          vm.isLoading = false;
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('ordersModule/getOrders', page);
     },
     editOrderModal(item) {
       const vm = this;
