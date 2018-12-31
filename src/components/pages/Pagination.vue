@@ -30,11 +30,29 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters('productsModule', ['pagination']),
+    // ...mapGetters('productsModule', ['pagination']),
+    pagination() {
+      let moduleName = moduleName = this.$route.path;
+      if(moduleName === '/admin/orders') {
+        moduleName = 'ordersModule';
+      }else if(moduleName === '/admin/products') {
+        moduleName = 'productsModule';
+      }
+      return this.$store.state[moduleName].pagination;
+    },
   },
   methods: {
     getCurrentPage(page) {
-      this.$store.dispatch('productsModule/getProducts', page);
+      let moduleName = this.$route.path;
+      let methodName = '';
+      if(moduleName === '/admin/orders') {
+        moduleName = 'ordersModule';
+        methodName = 'getOrders';
+      }else if(moduleName === '/admin/products') {
+        moduleName = 'productsModule';
+        methodName = 'getProducts'
+      }
+      this.$store.dispatch(`${moduleName}/${methodName}`, page);
     },
   },
 };
