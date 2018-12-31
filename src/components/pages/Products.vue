@@ -108,8 +108,7 @@
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
-                    :value="tempProduct.is_enabled"
-                    @input="updateIsEnabled"
+                    v-model="isEnabled"
                     :true-value="1"
                     :false-value="0"
                     id="is_enabled">
@@ -169,6 +168,14 @@ export default {
       'isNew',
       'isUploadImage',
     ]),
+    isEnabled: {
+      get() {
+        return this.tempProduct.is_enabled;
+      },
+      set(value) {
+        this.$store.commit('productsModule/IS_ENABLED', value);
+      }
+    },
   },
   methods: {
     getProducts(page = 1) {
@@ -214,9 +221,6 @@ export default {
     },
     updateContent(e) {
       this.$store.dispatch('productsModule/updateContent', e.target.value);
-    },
-    updateIsEnabled(e) {
-      this.$store.dispatch('productsModule/updateIsEnabled', e.target.value);
     },
   },
   created() {
