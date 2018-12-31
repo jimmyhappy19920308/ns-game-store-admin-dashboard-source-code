@@ -149,11 +149,13 @@ export default {
       this.$store.dispatch('ordersModule/getOrders', page);
     },
     editOrderModal(item) {
+      $('#orderModal').modal('show');
+
       this.$store.dispatch('ordersModule/editOrderModal', item);
     },
     delOrderModal(item) {
-      const vm = this;
-      vm.tempOrder = Object.assign({}, item);
+      this.$store.dispatch('ordersModule/delOrderModal', item);
+
       $('#delOrderModal').modal('show');
     },
     removeOrder() {
