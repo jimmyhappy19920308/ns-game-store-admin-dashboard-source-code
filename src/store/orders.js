@@ -87,6 +87,9 @@ export default {
     ORDERS(state, orders) {
       state.orders = orders;
     },
+    PAGINATION(state, pagination) {
+      state.pagination = pagination;
+    },
   },
   getters: {
     orders(state) {
