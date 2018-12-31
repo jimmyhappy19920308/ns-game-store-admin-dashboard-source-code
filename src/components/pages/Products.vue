@@ -58,25 +58,25 @@
                   <input type="file" id="customFile" class="form-control"
                     ref="files" @change="uploadImage">
                 </div>
-                <img :src="imageUrl"
+                <img :src="tempProduct.imageUrl"
                   class="img-fluid" alt="">
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
                   <label for="title">標題</label>
-                  <input type="text" class="form-control" :value="title" @input="updateTitle" id="title"
+                  <input type="text" class="form-control" :value="tempProduct.title" @input="updateTitle" id="title"
                     placeholder="請輸入標題">
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="category">分類</label>
-                    <input type="text" class="form-control" :value="category" @input="updateCategory" id="category"
+                    <input type="text" class="form-control" :value="tempProduct.category" @input="updateCategory" id="category"
                       placeholder="請輸入分類">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="price">單位</label>
-                    <input type="unit" class="form-control" :value="unit" @input="updateUnit" id="unit"
+                    <input type="unit" class="form-control" :value="tempProduct.unit" @input="updateUnit" id="unit"
                       placeholder="請輸入單位">
                   </div>
                 </div>
@@ -84,12 +84,12 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                   <label for="origin_price">原價</label>
-                    <input type="number" class="form-control" :value="originPrice" @input="updateOriginPrice" id="origin_price"
+                    <input type="number" class="form-control" :value="tempProduct.origin_price" @input="updateOriginPrice" id="origin_price"
                       placeholder="請輸入原價">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="price">售價</label>
-                    <input type="number" class="form-control" :value="price" @input="updatePrice" id="price"
+                    <input type="number" class="form-control" :value="tempProduct.price" @input="updatePrice" id="price"
                       placeholder="請輸入售價">
                   </div>
                 </div>
@@ -97,18 +97,18 @@
 
                 <div class="form-group">
                   <label for="description">產品描述</label>
-                  <textarea type="text" class="form-control" :value="description" @input="updateDescription" id="description"
+                  <textarea type="text" class="form-control" :value="tempProduct.description" @input="updateDescription" id="description"
                     placeholder="請輸入產品描述"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="content">說明內容</label>
-                  <textarea type="text" class="form-control" :value="content" @input="updateContent" id="content"
+                  <textarea type="text" class="form-control" :value="tempProduct.content" @input="updateContent" id="content"
                     placeholder="請輸入產品說明內容"></textarea>
                 </div>
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
-                    :value="isEnabled"
+                    :value="tempProduct.is_enabled"
                     @input="updateIsEnabled"
                     :true-value="1"
                     :false-value="0"
