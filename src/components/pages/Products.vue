@@ -155,7 +155,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import $ from 'jquery';
 import Pagination from './Pagination.vue';
 
 export default {
