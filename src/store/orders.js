@@ -60,4 +60,15 @@ export default {
     },
     newDate: 0,
   },
+  getters: {
+    orders(state) {
+      return state.orders;
+    },
+    tempOrder(state) {
+      return state.tempOrder;
+    },
+    newDate(state) {
+      return state.newDate;
+    },
+  },
 };
