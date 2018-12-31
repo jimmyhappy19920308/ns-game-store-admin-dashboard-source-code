@@ -107,6 +107,15 @@ export default {
     PAGINATION(state, pagination) {
       state.pagination = pagination;
     },
+    TEMP_ORDER(state, tempOrder) {
+      state.tempOrder = tempOrder;
+    },
+    TOTAL(state, total) {
+      state.tempOrder.total = total;
+    },
+    NEW_DATE(state, newDate) {
+      state.newDate = newDate;
+    },
   },
   getters: {
     orders(state) {
