@@ -101,5 +101,8 @@ export default {
     newDate(state) {
       return state.newDate;
     },
+    pagination(state) {
+      return state.pagination;
+    },
   },
 };
