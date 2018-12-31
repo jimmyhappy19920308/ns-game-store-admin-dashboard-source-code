@@ -174,7 +174,7 @@ export default {
       },
       set(value) {
         this.$store.commit('productsModule/IS_ENABLED', value);
-      }
+      },
     },
   },
   methods: {
