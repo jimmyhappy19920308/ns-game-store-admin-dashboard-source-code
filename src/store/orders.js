@@ -100,6 +100,38 @@ export default {
     delOrderModal(context, item) {
       context.commit('DELETE_TEMP_ORDER', Object.assign({}, item));
     },
+    removeOrder(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/order/${context.state.tempOrder.id}`;
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      const removeOrder = {
+        tempOrder: context.state.tempOrder,
+        isRemove: true,
+      };
+      axios.put(api, { data: removeOrder }).then(response => {
+        // console.log(response.data);
+        if (response.data.success) {
+          context.dispatch('updateLoading', false, { root: true });
+
+          $('#delOrderModal').modal('hide');
+
+          context.dispatch('getOrders');
+
+          console.log('訂單刪除成功');
+        } else {
+          context.dispatch('updateLoading', false, { root: true });
+
+          $('#delOrderModal').modal('hide');
+
+          context.dispatch('getOrders');
+
+          console.log(response.data.message);
+        }
+      });
+    },
   },
   mutations: {
     ORDERS(state, orders) {
@@ -109,6 +141,9 @@ export default {
       state.pagination = pagination;
     },
     TEMP_ORDER(state, tempOrder) {
+      state.tempOrder = tempOrder;
+    },
+    DELETE_TEMP_ORDER(state, tempOrder) {
       state.tempOrder = tempOrder;
     },
     TOTAL(state, total) {

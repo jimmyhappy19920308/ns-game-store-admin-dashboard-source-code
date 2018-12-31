@@ -159,29 +159,7 @@ export default {
       $('#delOrderModal').modal('show');
     },
     removeOrder() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/order/${vm.tempOrder.id}`;
-      vm.isLoading = true;
-      const removeOrder = {
-        tempOrder: vm.tempOrder,
-        isRemove: true,
-      };
-      vm.$http.put(api, { data: removeOrder }).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          vm.isLoading = false;
-          $('#delOrderModal').modal('hide');
-          vm.getOrders();
-          console.log('訂單刪除成功');
-        } else {
-          vm.isLoading = false;
-          $('#delOrderModal').modal('hide');
-          vm.getOrders();
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('ordersModule/removeOrder');
     },
     updateOrder() {
       const vm = this;
