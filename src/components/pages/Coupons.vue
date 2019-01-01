@@ -138,37 +138,7 @@ export default {
       $('#delCouponModal').modal('show');
     },
     updateCoupon(id) {
-      const vm = this;
-      let api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/coupon`;
-      let httpMethod = 'post';
-      if (!vm.isNew) {
-        api = `${process.env.VUE_APP_API_PATH}/api/${
-          process.env.VUE_APP_CUSTOM_PATH
-        }/admin/coupon/${id}`;
-        httpMethod = 'put';
-      }
-
-      vm.$http[httpMethod](api, { data: vm.tempCoupon }).then(response => {
-        if (response.data.success) {
-          $('#couponModal').modal('hide');
-          vm.getCoupons();
-          if (vm.isNew) {
-            console.log('Copon 新增成功');
-          } else {
-            console.log('Copon 編輯成功');
-          }
-        } else {
-          $('#couponModal').modal('hide');
-          vm.getCoupons();
-          if (vm.isNew) {
-            console.log('Copon 新增失敗');
-          } else {
-            console.log('Copon 編輯失敗');
-          }
-        }
-      });
+      this.$store.dispatch('couponsModules', id);
     },
     removeCoupon() {
       const vm = this;

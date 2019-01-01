@@ -39,6 +39,43 @@ export default {
       }
       $('#couponModal').modal('show');
     },
+    updateCoupon(context, id) {
+      let api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/coupon`;
+      let httpMethod = 'post';
+
+      if (!context.state.isNew) {
+        api = `${process.env.VUE_APP_API_PATH}/api/${
+          process.env.VUE_APP_CUSTOM_PATH
+        }/admin/coupon/${id}`;
+        httpMethod = 'put';
+      }
+
+      axios[httpMethod](api, { data: context.state.tempCoupon }).then(response => {
+        if (response.data.success) {
+          $('#couponModal').modal('hide');
+
+          context.dispatch('getCoupons');
+
+          if (context.state.isNew) {
+            console.log('Copon 新增成功');
+          } else {
+            console.log('Copon 編輯成功');
+          }
+        } else {
+          $('#couponModal').modal('hide');
+
+          context.dispatch('getCoupons');
+
+          if (context.state.isNew) {
+            console.log('Copon 新增失敗');
+          } else {
+            console.log('Copon 編輯失敗');
+          }
+        }
+      });
+    },
   },
   mutations: {
     COUPONS(state, coupons) {
