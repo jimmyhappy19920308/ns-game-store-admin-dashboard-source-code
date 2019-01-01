@@ -127,16 +127,7 @@ export default {
   },
   methods: {
     getCoupons() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/coupons`;
-      vm.isLoading = true;
-      vm.$http.get(api).then(response => {
-        vm.isLoading = false;
-        // console.log(response.data);
-        vm.coupons = response.data.coupons;
-      });
+      this.$store.dispatch('couponsModule/getCoupons');
     },
     openCouponModal(isNew, item) {
       const vm = this;

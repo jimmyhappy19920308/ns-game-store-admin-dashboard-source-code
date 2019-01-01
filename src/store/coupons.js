@@ -14,4 +14,19 @@ export default {
       code: '',
     },
   },
+  actions: {
+    getCoupons(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/coupons`;
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.get(api).then(response => {
+        context.dispatch('updateLoading', false, { root: true });
+
+        context.commit('COUPONS', response.data.coupons);
+      });
+    },
+  },
 };
