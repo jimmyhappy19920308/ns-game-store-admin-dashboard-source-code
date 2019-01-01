@@ -104,13 +104,18 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import Pagination from './Pagination.vue';
 
 export default {
+  components: {
+    'pagination-component': Pagination,
+  },
   computed: {
     ...mapGetters('couponsModule', ['coupons', 'isNew', 'tempCoupon']),
     title: {
