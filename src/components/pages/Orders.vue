@@ -197,17 +197,17 @@ export default {
       this.$store.dispatch('ordersModule/updateOrder');
     },
     updateTitle(index, event) {
-      const value = event.target.value;
+      const { value } = event.target;
 
       this.$store.commit('ordersModule/UPDATE_TITLE', { index, value });
     },
     updateQty(index, event) {
-      const value = event.target.value;
+      const { value } = event.target;
 
       this.$store.commit('ordersModule/UPDATE_QTY', { index, value });
     },
     updateUnit(index, event) {
-      const value = event.target.value;
+      const { value } = event.target;
 
       this.$store.commit('ordersModule/UPDATE_UNIT', { index, value });
     },
