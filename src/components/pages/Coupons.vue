@@ -113,9 +113,6 @@ import $ from 'jquery';
 export default {
   data() {
     return {
-      coupons: [],
-      isNew: false,
-      isLoading: false,
       tempCoupon: {
         title: '',
         is_enabled: false,
