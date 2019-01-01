@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jquery from 'jquery';
+import $ from 'jquery';
 
 export default {
   namespaced: true,
