@@ -118,4 +118,12 @@ export default {
       state.isNew = isNew;
     },
   },
+  getters: {
+    coupons(state) {
+      return state.coupons;
+    },
+    isNew(state) {
+      return state.isNew;
+    },
+  },
 };
