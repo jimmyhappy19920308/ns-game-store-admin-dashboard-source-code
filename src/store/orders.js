@@ -88,13 +88,19 @@ export default {
       context.commit('TEMP_ORDER', Object.assign({}, item));
       const dates = new Date(context.state.tempOrder.create_at * 1000);
       const year = dates.getFullYear();
-      const month = dates.getMonth() + 1;
-      const date = dates.getDate();
-      // vm.tempOrder.total = parseInt(vm.tempOrder.total, 10);
-      // vm.$set(vm.tempOrder, 'total', parseInt(vm.tempOrder.total, 10));
+      let month = dates.getMonth() + 1;
+      let date = dates.getDate();
+
       context.commit('TOTAL', parseInt(context.state.tempOrder.total, 10));
 
-      // vm.newDate = `${year}-${month}-${date}`;
+      if (month < 10) {
+        month = `0${month}`;
+      }
+
+      if (date < 10) {
+        date = `0${date}`;
+      }
+
       context.commit('NEW_DATE', `${year}-${month}-${date}`);
     },
     delOrderModal(context, item) {
@@ -132,6 +138,36 @@ export default {
         }
       });
     },
+    updateOrder(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/order/${context.state.tempOrder.id}`;
+
+      const date = Math.round(new Date(context.state.newDate).getTime() / 1000);
+
+      context.commit('CREATE_AT', date);
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.put(api, { data: context.state.tempOrder }).then(response => {
+        // console.log(response.data);
+        if (response.data.success) {
+          $('#orderModal').modal('hide');
+
+          context.dispatch('getOrders');
+
+          context.dispatch('updateLoading', false, { root: true });
+        } else {
+          $('#orderModal').modal('hide');
+
+          context.dispatch('getOrders');
+
+          context.dispatch('updateLoading', false, { root: true });
+
+          console.log(response.data.message);
+        }
+      });
+    },
   },
   mutations: {
     ORDERS(state, orders) {
@@ -152,6 +188,27 @@ export default {
     NEW_DATE(state, newDate) {
       state.newDate = newDate;
     },
+    CREATE_AT(state, createAt) {
+      state.tempOrder.create_at = createAt;
+    },
+    EMAIL(state, email) {
+      state.tempOrder.user.email = email;
+    },
+    PRODUCTS(state, products) {
+      state.tempOrder.products = products;
+    },
+    UPDATE_TITLE(state, { index, value }) {
+      state.tempOrder.products[index].product.title = value;
+    },
+    UPDATE_QTY(state, { index, value }) {
+      state.tempOrder.products[index].qty = value;
+    },
+    UPDATE_UNIT(state, { index, value }) {
+      state.tempOrder.products[index].product.unit = value;
+    },
+    IS_PAID(state, isPaid) {
+      state.tempOrder.is_paid = isPaid;
+    },
   },
   getters: {
     orders(state) {
@@ -165,6 +222,9 @@ export default {
     },
     pagination(state) {
       return state.pagination;
+    },
+    products(state) {
+      return state.tempOrder.products;
     },
   },
 };

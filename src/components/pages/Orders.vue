@@ -56,11 +56,11 @@
             <div class="form-group">
               <label for="email">信箱</label>
               <input type="text" class="form-control" id="email"
-              v-model="tempOrder.user.email">
+              v-model="email">
             </div>
             <div class="form-group">
               <p>購買款項</p>
-              <template v-for="item in tempOrder.products">
+              <template v-for="(item, index) in tempOrder.products">
                 <table :key="item.product.create_at">
                   <thead>
                     <th><label :for="item.id" :key="item.product.create_at">商品名稱</label></th>
@@ -69,13 +69,13 @@
                   </thead>
                   <tbody>
                     <td>
-                      <input type="text" class="form-control" :id="item.id" v-model="item.product.title" :key="item.product.create_at">
+                      <input type="text" class="form-control" :id="item.id" :value="item.product.title" @input="updateTitle(index, $event)" :key="item.product.create_at">
                     </td>
                     <td>
-                      <input type="number" class="form-control" v-model="item.qty" :key="item.product.create_at">
+                      <input type="number" class="form-control" :value="item.qty" @input="updateQty(index, $event)"  :key="item.product.create_at">
                     </td>
                     <td>
-                      <input type="text" class="form-control" v-model="item.product.unit">
+                      <input type="text" class="form-control" :value="item.product.unit" @input="updateUnit(index, $event)">
                     </td>
                   </tbody>
                 </table>
@@ -85,12 +85,12 @@
             <div class="form-group">
               <label for="total">應付金額</label>
               <input type="text" class="form-control" id="total"
-              v-model.number="tempOrder.total">
+              v-model.number="total">
             </div>
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="is_paid"
-                v-model="tempOrder.is_paid" :true-value="1" :false-value="0">
+                v-model="isPaid" :true-value="1" :false-value="0">
                 <label class="form-check-label" for="is_paid">
                   是否已付款
                 </label>
@@ -142,7 +142,39 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('ordersModule', ['orders', 'newDate', 'tempOrder', 'pagination']),
+    ...mapGetters('ordersModule', ['orders', 'newDate', 'tempOrder', 'pagination', 'products']),
+    newDate: {
+      get() {
+        return this.$store.state.ordersModule.newDate;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/NEW_DATE', value);
+      },
+    },
+    email: {
+      get() {
+        return this.$store.state.ordersModule.tempOrder.user.email;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/EMAIL', value);
+      },
+    },
+    total: {
+      get() {
+        return this.$store.state.ordersModule.tempOrder.total;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/TOTAL', value);
+      },
+    },
+    isPaid: {
+      get() {
+        return this.$store.state.ordersModule.tempOrder.is_paid;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/IS_PAID', value);
+      },
+    },
   },
   methods: {
     getOrders(page = 1) {
@@ -162,29 +194,22 @@ export default {
       this.$store.dispatch('ordersModule/removeOrder');
     },
     updateOrder() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/order/${vm.tempOrder.id}`;
-      const date = Math.round(new Date(vm.newDate).getTime() / 1000);
+      this.$store.dispatch('ordersModule/updateOrder');
+    },
+    updateTitle(index, event) {
+      const value = event.target.value;
 
-      vm.$set(vm.tempOrder, 'create_at', date);
+      this.$store.commit('ordersModule/UPDATE_TITLE', { index, value });
+    },
+    updateQty(index, event) {
+      const value = event.target.value;
 
-      vm.isLoading = true;
+      this.$store.commit('ordersModule/UPDATE_QTY', { index, value });
+    },
+    updateUnit(index, event) {
+      const value = event.target.value;
 
-      vm.$http.put(api, { data: vm.tempOrder }).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          $('#orderModal').modal('hide');
-          vm.getOrders();
-          vm.isLoading = false;
-        } else {
-          $('#orderModal').modal('hide');
-          vm.getOrders();
-          vm.isLoading = false;
-          console.log(response.data.message);
-        }
-      });
+      this.$store.commit('ordersModule/UPDATE_UNIT', { index, value });
     },
   },
   created() {
