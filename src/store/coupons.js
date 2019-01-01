@@ -29,4 +29,9 @@ export default {
       });
     },
   },
+  mutations: {
+    COUPONS(state, coupons) {
+      state.coupons = coupons;
+    },
+  },
 };
