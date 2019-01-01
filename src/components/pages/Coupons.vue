@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-
+    <pagination-component></pagination-component>
   </div>
 </template>
 
