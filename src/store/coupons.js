@@ -76,6 +76,31 @@ export default {
         }
       });
     },
+    removeCoupon(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/admin/coupon/${context.tempCoupon.id}`;
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.delete(api).then(response => {
+        context.dispatch('updateLoading', false, { root: true });
+
+        if (response.data.success) {
+          $('#delCouponModal').modal('hide');
+
+          context.dispatch('getCoupons');
+
+          console.log('優惠券刪除成功');
+        } else {
+          $('#delCouponModal').modal('hide');
+
+          context.dispatch('getCoupons');
+
+          console.log('優惠券刪除失敗');
+        }
+      });
+    },
   },
   mutations: {
     COUPONS(state, coupons) {

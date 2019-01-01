@@ -141,24 +141,7 @@ export default {
       this.$store.dispatch('couponsModules/updateCoupon', id);
     },
     removeCoupon() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/admin/coupon/${vm.tempCoupon.id}`;
-      vm.isLoading = true;
-      vm.$http.delete(api).then(response => {
-        vm.isLoading = false;
-        // console.log(response.data);
-        if (response.data.success) {
-          $('#delCouponModal').modal('hide');
-          vm.getCoupons();
-          console.log('優惠券刪除成功');
-        } else {
-          $('#delCouponModal').modal('hide');
-          vm.getCoupons();
-          console.log('優惠券刪除失敗');
-        }
-      });
+      this.$store.dispatch('couponsModule/removeCoupon');
     },
   },
   filters: {
