@@ -108,6 +108,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import $ from 'jquery';
 
 export default {
@@ -121,6 +122,9 @@ export default {
         code: '',
       },
     };
+  },
+  computed: {
+    ...mapGetters('couponsModule', ['coupons', 'isNew']),
   },
   methods: {
     getCoupons() {
