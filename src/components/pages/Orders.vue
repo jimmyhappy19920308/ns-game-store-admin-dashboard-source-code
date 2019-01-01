@@ -30,7 +30,7 @@
               <span class="text-muted" v-else>尚未付款</span>
             </td>
             <td>
-              <button class="btn btn-outline-primary btn-sm" @click.prevent="editOrderModal(item)">編輯</button>
+              <button class="btn btn-outline-primary btn-sm mr-3" @click.prevent="editOrderModal(item)">編輯</button>
               <button class="btn btn-outline-danger btn-sm" @click.prevent="delOrderModal(item)">刪除</button>
             </td>
           </tr>
