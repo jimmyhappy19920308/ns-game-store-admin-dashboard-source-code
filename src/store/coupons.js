@@ -29,6 +29,16 @@ export default {
         context.commit('COUPONS', response.data.coupons);
       });
     },
+    openCouponModal(context, { isNew, item }) {
+      if (isNew) {
+        context.commit('TEMP_COUPON', {});
+        context.commit('IS_NEW', true);
+      } else {
+        context.commit('TEMP_COUPON', Object.assign({}, item));
+        context.commit('IS_NEW', false);
+      }
+      $('#couponModal').modal('show');
+    },
   },
   mutations: {
     COUPONS(state, coupons) {

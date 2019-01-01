@@ -130,15 +130,7 @@ export default {
       this.$store.dispatch('couponsModule/getCoupons');
     },
     openCouponModal(isNew, item) {
-      const vm = this;
-      if (isNew) {
-        vm.tempCoupon = {};
-        vm.isNew = true;
-      } else {
-        vm.tempCoupon = Object.assign({}, item);
-        vm.isNew = false;
-      }
-      $('#couponModal').modal('show');
+      this.$store.dispatch('couponsModule/openCouponModal', { inNew, item });
     },
     delCouponModal(item) {
       const vm = this;
