@@ -138,7 +138,7 @@ export default {
       $('#delCouponModal').modal('show');
     },
     updateCoupon(id) {
-      this.$store.dispatch('couponsModules', id);
+      this.$store.dispatch('couponsModules/updateCoupon', id);
     },
     removeCoupon() {
       const vm = this;
