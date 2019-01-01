@@ -133,9 +133,7 @@ export default {
       this.$store.dispatch('couponsModule/openCouponModal', { inNew, item });
     },
     delCouponModal(item) {
-      const vm = this;
-      vm.tempCoupon = Object.assign({}, item);
-      $('#delCouponModal').modal('show');
+      this.$store.dispatch('couponsModule/delCouponModal', item);
     },
     updateCoupon(id) {
       this.$store.dispatch('couponsModules/updateCoupon', id);
