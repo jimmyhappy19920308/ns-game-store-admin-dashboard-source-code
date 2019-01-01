@@ -111,5 +111,11 @@ export default {
     COUPONS(state, coupons) {
       state.coupons = coupons;
     },
+    TEMP_COUPON(state, tempCoupon) {
+      state.tempCoupon = tempCoupon;
+    },
+    IS_NEW(state, isNew) {
+      state.isNew = isNew;
+    },
   },
 };
