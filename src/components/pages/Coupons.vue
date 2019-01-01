@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in coupons" :key="item.id">
+        <tr v-for="(item, index) in coupons" :key="index">
           <td> {{ item.title }} </td>
           <td> {{ item.percent }} %</td>
           <td> {{item.due_date | formatDate }} </td>
@@ -45,27 +45,27 @@
             <div class="form-group">
               <label for="title">標題</label>
               <input type="text" class="form-control" id="title" placeholder="請輸入標題"
-              v-model="tempCoupon.title">
+              v-model="title">
             </div>
             <div class="form-group">
               <label for="coupon_code">優惠碼</label>
               <input type="text" class="form-control" id="coupon_code" placeholder="請輸入優惠碼"
-              v-model="tempCoupon.code">
+              v-model="code">
             </div>
             <div class="form-group">
               <label for="due_date">到期日</label>
               <input type="date" class="form-control" id="due_date"
-              v-model="tempCoupon.due_date">
+              v-model="dueDate">
             </div>
             <div class="form-group">
               <label for="price">折扣百分比</label>
               <input type="number" class="form-control" id="price" placeholder="請輸入折扣百分比"
-              v-model="tempCoupon.percent">
+              v-model="percent">
             </div>
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="is_enabled"
-                v-model="tempCoupon.is_enabled" :true-value="1" :false-value="0">
+                v-model="isEnabled" :true-value="1" :false-value="0">
                 <label class="form-check-label" for="is_enabled">
                   是否啟用
                 </label>
@@ -95,11 +95,11 @@
             </button>
           </div>
           <div class="modal-body">
-            是否刪除 <strong class="text-danger">{{ tempCoupon.title }}</strong> 優惠券(刪除後將無法恢復)。
+            是否刪除 <strong class="text-danger">{{ title }}</strong> 優惠券(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click.prevent="removeCoupon">確認刪除</button>
+            <button type="button" class="btn btn-danger" @click.prevent="removeCoupon(tempCoupon.id)">確認刪除</button>
           </div>
         </div>
       </div>
@@ -112,35 +112,64 @@ import { mapGetters } from 'vuex';
 import $ from 'jquery';
 
 export default {
-  data() {
-    return {
-      tempCoupon: {
-        title: '',
-        is_enabled: false,
-        percent: 100,
-        due_date: 0,
-        code: '',
-      },
-    };
-  },
   computed: {
-    ...mapGetters('couponsModule', ['coupons', 'isNew']),
+    ...mapGetters('couponsModule', ['coupons', 'isNew', 'tempCoupon']),
+    title: {
+      get() {
+        return this.$store.state.couponsModule.tempCoupon.title;
+      },
+      set(value) {
+        this.$store.commit('couponsModule/UPDATE_TITLE', value);
+      },
+    },
+    code: {
+      get() {
+        return this.$store.state.couponsModule.tempCoupon.code;
+      },
+      set(value) {
+        this.$store.commit('couponsModule/UPDATE_CODE', value);
+      },
+    },
+    dueDate: {
+      get() {
+        return this.$store.state.couponsModule.tempCoupon.due_date;
+      },
+      set(value) {
+        this.$store.commit('couponsModule/UPDATE_DUE_DATE', value);
+      },
+    },
+    percent: {
+      get() {
+        return this.$store.state.couponsModule.tempCoupon.percent;
+      },
+      set(value) {
+        this.$store.commit('couponsModule/UPDATE_PERCENT', value);
+      },
+    },
+    isEnabled: {
+      get() {
+        return this.$store.state.couponsModule.tempCoupon.is_enabled;
+      },
+      set(value) {
+        this.$store.commit('couponsModule/UPDATE_IS_ENABLED', value);
+      },
+    },
   },
   methods: {
     getCoupons() {
       this.$store.dispatch('couponsModule/getCoupons');
     },
     openCouponModal(isNew, item) {
-      this.$store.dispatch('couponsModule/openCouponModal', { inNew, item });
+      this.$store.dispatch('couponsModule/openCouponModal', { isNew, item });
     },
     delCouponModal(item) {
       this.$store.dispatch('couponsModule/delCouponModal', item);
     },
     updateCoupon(id) {
-      this.$store.dispatch('couponsModules/updateCoupon', id);
+      this.$store.dispatch('couponsModule/updateCoupon', id);
     },
-    removeCoupon() {
-      this.$store.dispatch('couponsModule/removeCoupon');
+    removeCoupon(id) {
+      this.$store.dispatch('couponsModule/removeCoupon', id);
     },
   },
   filters: {
