@@ -81,10 +81,10 @@ export default {
         }
       });
     },
-    removeCoupon(context) {
+    removeCoupon(context, id) {
       const api = `${process.env.VUE_APP_API_PATH}/api/${
         process.env.VUE_APP_CUSTOM_PATH
-      }/admin/coupon/${context.tempCoupon.id}`;
+      }/admin/coupon/${id}`;
 
       context.dispatch('updateLoading', true, { root: true });
 
@@ -103,6 +103,7 @@ export default {
           context.dispatch('getCoupons');
 
           console.log('優惠券刪除失敗');
+          console.log(response.data.message);
         }
       });
     },
@@ -117,6 +118,21 @@ export default {
     IS_NEW(state, isNew) {
       state.isNew = isNew;
     },
+    UPDATE_TITLE(state, title) {
+      state.tempCoupon.title = title;
+    },
+    UPDATE_CODE(state, code) {
+      state.tempCoupon.code = code;
+    },
+    UPDATE_DUE_DATE(state, dueDate) {
+      state.tempCoupon.due_date = dueDate;
+    },
+    UPDATE_PERCENT(state, percent) {
+      state.tempCoupon.percent = percent;
+    },
+    UPDATE_IS_ENABLED(state, isEnabled) {
+      state.tempCoupon.is_enabled = isEnabled;
+    },
   },
   getters: {
     coupons(state) {
@@ -124,6 +140,9 @@ export default {
     },
     isNew(state) {
       return state.isNew;
+    },
+    tempCoupon(state) {
+      return state.tempCoupon;
     },
   },
 };
