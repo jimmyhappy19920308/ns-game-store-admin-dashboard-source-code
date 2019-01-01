@@ -25,7 +25,7 @@
             <span v-else class="text-muted">未起用</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm" @click.prevent="openCouponModal(false, item)">編輯</button>
+            <button class="btn btn-outline-primary btn-sm mr-3" @click.prevent="openCouponModal(false, item)">編輯</button>
             <button class="btn btn-outline-danger btn-sm" @click.prevent="delCouponModal(item)">刪除</button>
           </td>
         </tr>
