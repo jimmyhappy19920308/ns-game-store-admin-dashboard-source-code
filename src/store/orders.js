@@ -84,7 +84,8 @@ export default {
       });
     },
     editOrderModal(context, item) {
-      // vm.tempOrder = Object.assign({}, item);
+      $('#orderModal').modal('show');
+
       context.commit('TEMP_ORDER', Object.assign({}, item));
       const dates = new Date(context.state.tempOrder.create_at * 1000);
       const year = dates.getFullYear();
@@ -105,6 +106,8 @@ export default {
     },
     delOrderModal(context, item) {
       context.commit('DELETE_TEMP_ORDER', Object.assign({}, item));
+
+      $('#delOrderModal').modal('show');
     },
     removeOrder(context) {
       const api = `${process.env.VUE_APP_API_PATH}/api/${

@@ -134,7 +134,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import $ from 'jquery';
 import Pagination from './Pagination.vue';
 
 export default {
@@ -181,14 +180,10 @@ export default {
       this.$store.dispatch('ordersModule/getOrders', page);
     },
     editOrderModal(item) {
-      $('#orderModal').modal('show');
-
       this.$store.dispatch('ordersModule/editOrderModal', item);
     },
     delOrderModal(item) {
       this.$store.dispatch('ordersModule/delOrderModal', item);
-
-      $('#delOrderModal').modal('show');
     },
     removeOrder() {
       this.$store.dispatch('ordersModule/removeOrder');
