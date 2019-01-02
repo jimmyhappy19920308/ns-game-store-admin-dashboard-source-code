@@ -51,7 +51,7 @@
           </tbody>
         </table>
         <div class="text-right">
-          <router-link class="btn btn-primary" to="/custom-orders" v-if="!order.is_paid">取消</router-link>
+          <router-link class="btn btn-primary mr-3" to="/custom-orders" v-if="!order.is_paid">取消</router-link>
           <button class="btn btn-danger" v-if="!order.is_paid">確認付款去</button>
         </div>
       </form>
