@@ -63,6 +63,11 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  date() {
+    return  {
+      id: '',
+    };
+  },
   filters: {
     toFixed(n) {
       return n.toFixed(0);
@@ -76,17 +81,7 @@ export default {
       this.$store.dispatch('ordersModule/getOrder', this.$route.params.orderId);
     },
     payOrder() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/pay/${
-        vm.orderId
-      }`;
-      vm.$http.post(api).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          vm.getOrder();
-          console.log(response.data.message);
-        }
-      });
+      this.$store.dispatch('ordersModule/payOrder', this.$route.params.orderId);
     },
   },
   created() {
