@@ -63,11 +63,6 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  date() {
-    return {
-      id: '',
-    };
-  },
   filters: {
     toFixed(n) {
       return n.toFixed(0);
