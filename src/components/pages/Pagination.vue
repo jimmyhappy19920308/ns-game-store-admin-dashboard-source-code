@@ -53,7 +53,7 @@ export default {
         methodName = 'getProducts';
       } else if (moduleName === '/admin/coupons') {
         moduleName = 'couponsModule';
-        methodName = 'getCoupons'
+        methodName = 'getCoupons';
       }
       this.$store.dispatch(`${moduleName}/${methodName}`, page);
     },
