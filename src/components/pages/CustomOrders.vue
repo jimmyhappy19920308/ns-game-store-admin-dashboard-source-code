@@ -158,12 +158,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import $ from 'jquery';
 
 export default {
   data() {
     return {
-      products: [],
       product: {},
       isLoading: false,
       status: {
@@ -182,9 +182,12 @@ export default {
       coupon_code: '',
     };
   },
+  computed: {
+    ...mapGetters('productsModule', ['products']),
+  },
   methods: {
     getProducts(page = 1) {
-      this.$store.dispatch('productsModule/getProduct', page);
+      this.$store.dispatch('productsModule/getProducts', page);
     },
     getProduct(id) {
       const vm = this;
