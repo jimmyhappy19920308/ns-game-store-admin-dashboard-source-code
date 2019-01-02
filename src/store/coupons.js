@@ -14,12 +14,13 @@ export default {
       due_date: 0,
       code: '',
     },
+    pagination: {},
   },
   actions: {
-    getCoupons(context) {
+    getCoupons(context, page) {
       const api = `${process.env.VUE_APP_API_PATH}/api/${
         process.env.VUE_APP_CUSTOM_PATH
-      }/admin/coupons`;
+      }/admin/coupons?page=${page}`;
 
       context.dispatch('updateLoading', true, { root: true });
 
@@ -27,6 +28,7 @@ export default {
         context.dispatch('updateLoading', false, { root: true });
 
         context.commit('COUPONS', response.data.coupons);
+        context.commit('PAGINATION', response.data.pagination);
       });
     },
     openCouponModal(context, { isNew, item }) {
@@ -133,6 +135,9 @@ export default {
     UPDATE_IS_ENABLED(state, isEnabled) {
       state.tempCoupon.is_enabled = isEnabled;
     },
+    PAGINATION(state, pagination) {
+      state.pagination = pagination;
+    },
   },
   getters: {
     coupons(state) {
@@ -143,6 +148,9 @@ export default {
     },
     tempCoupon(state) {
       return state.tempCoupon;
+    },
+    pagination(state) {
+      return state.pagination;
     },
   },
 };
