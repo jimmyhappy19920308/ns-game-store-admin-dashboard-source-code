@@ -12,20 +12,32 @@ export default new Vuex.Store({
   strict: true,
   state: {
     isLoading: false,
+    status: {
+      loadingItem: '',
+    },
   },
   actions: {
     updateLoading(context, payload) {
       context.commit('LOADING', payload);
+    },
+    updateLoadingItem(context, payload) {
+      context.commit('LOADING_ITEM', payload);
     },
   },
   mutations: {
     LOADING(state, payload) {
       state.isLoading = payload;
     },
+    LOADING_ITEM(state, payload) {
+      state.status.loadingItem = payload;
+    },
   },
   getters: {
     isLoading(state) {
       return state.isLoading;
+    },
+    status(state) {
+      return state.status;
     },
   },
   modules: {

@@ -178,8 +178,9 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('productsModule', ['products', 'product', 'status']),
+    ...mapGetters('productsModule', ['products', 'product']),
     ...mapGetters('cartsModule', ['cart']),
+    ...mapGetters(['status']),
   },
   methods: {
     getProducts(page = 1) {

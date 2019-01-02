@@ -21,9 +21,6 @@ export default {
     isNew: false,
     isUploadImage: false,
     product: {},
-    status: {
-      loadingItem: '',
-    },
   },
   actions: {
     getProducts(context, page) {
@@ -108,7 +105,7 @@ export default {
         process.env.VUE_APP_CUSTOM_PATH
       }/product/${id}`;
 
-      context.commit('LOADING_ITEM', id);
+      context.dispatch('updateLoadingItem', id, { root: true });
 
       axios.get(api).then(response => {
         // console.log(response.data);
@@ -117,7 +114,7 @@ export default {
 
           $('#productModal').modal('show');
 
-          context.commit('LOADING_ITEM', '');
+          context.dispatch('updateLoadingItem', '', { root: true });
         }
       });
     },
@@ -213,9 +210,6 @@ export default {
     IS_UPLOAD_IMAGE(state, isUploadImage) {
       state.isUploadImage = isUploadImage;
     },
-    LOADING_ITEM(state, loadingItem) {
-      state.status.loadingItem = loadingItem;
-    },
     PRODUCT(state, product) {
       state.product = product;
     },
@@ -235,9 +229,6 @@ export default {
     },
     isUploadImage(state) {
       return state.isUploadImage;
-    },
-    status(state) {
-      return state.status;
     },
     product(state) {
       return state.product;
