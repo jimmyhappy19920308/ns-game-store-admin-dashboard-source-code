@@ -190,22 +190,7 @@ export default {
       this.$store.dispatch('productsModule/getProduct', id);
     },
     addToCart(id, qty = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      vm.status.loadingItem = id;
-      vm.$http.post(api, { data: cart }).then(response => {
-        if (response.data.success) {
-          // console.log(response);
-          vm.status.loadingItem = '';
-          vm.getCart();
-          $('#productModal').modal('hide');
-        }
-        // console.log(vm.products);
-      });
+      this.$store.dispatch('cartsModule/addToCart', { id, qty });
     },
     removeCart(id) {
       const vm = this;
