@@ -207,10 +207,16 @@ export default {
         process.env.VUE_APP_CUSTOM_PATH
       }/order/${orderId}`;
 
+      context.dispatch('updateLoading', true, { root: true });
+
       axios.get(api).then(response => {
         // console.log(response.data);
         if (response.data.success) {
+          context.dispatch('updateLoading', false, { root: true });
+
           context.commit('ORDER', response.data.order);
+        } else {
+          context.dispatch('updateLoading', false, { root: true });
         }
       });
     },
