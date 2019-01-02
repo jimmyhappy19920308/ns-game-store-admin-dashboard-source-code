@@ -4,6 +4,7 @@ import productsModule from './products';
 import authModule from './auth';
 import ordersModule from './orders';
 import couponsModule from './coupons';
+import cartsModule from './carts';
 
 Vue.use(Vuex);
 
@@ -32,5 +33,6 @@ export default new Vuex.Store({
     authModule,
     ordersModule,
     couponsModule,
+    cartsModule,
   },
 });
