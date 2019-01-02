@@ -193,19 +193,7 @@ export default {
       this.$store.dispatch('cartsModule/addToCart', { id, qty });
     },
     removeCart(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/cart/${id}`;
-      // vm.cart.carts.splice(index, 1);
-      vm.isLoading = true;
-      vm.$http.delete(api).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          vm.getCart();
-          vm.isLoading = false;
-        }
-      });
+      this.$store.dispatch('cartsModule/removeCart', id);
     },
     getCart() {
       this.$store.dispatch('cartsModule/getCart');
