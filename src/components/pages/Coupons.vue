@@ -117,7 +117,7 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('couponsModule', ['coupons', 'isNew', 'tempCoupon']),
+    ...mapGetters('couponsModule', ['coupons', 'isNew', 'tempCoupon', 'pagination']),
     title: {
       get() {
         return this.$store.state.couponsModule.tempCoupon.title;
@@ -160,8 +160,8 @@ export default {
     },
   },
   methods: {
-    getCoupons() {
-      this.$store.dispatch('couponsModule/getCoupons');
+    getCoupons(page = 1) {
+      this.$store.dispatch('couponsModule/getCoupons', page);
     },
     openCouponModal(isNew, item) {
       this.$store.dispatch('couponsModule/openCouponModal', { isNew, item });
@@ -183,6 +183,7 @@ export default {
   },
   created() {
     const vm = this;
+
     vm.getCoupons();
   },
 };
