@@ -35,6 +35,8 @@ export default {
         moduleName = 'ordersModule';
       } else if (moduleName === '/admin/products') {
         moduleName = 'productsModule';
+      } else if (moduleName === '/admin/coupons') {
+        moduleName = 'couponsModule';
       }
       return this.$store.state[moduleName].pagination;
     },
@@ -49,6 +51,9 @@ export default {
       } else if (moduleName === '/admin/products') {
         moduleName = 'productsModule';
         methodName = 'getProducts';
+      } else if (moduleName === '/admin/coupons') {
+        moduleName = 'couponsModule';
+        methodName = 'getCoupons'
       }
       this.$store.dispatch(`${moduleName}/${methodName}`, page);
     },
