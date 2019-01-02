@@ -72,6 +72,11 @@ export default {
       },
       message: '',
     },
+    order: {
+      products: [],
+      total: 0,
+      user: {},
+    },
   },
   actions: {
     getOrders(context, page) {
@@ -192,6 +197,16 @@ export default {
         }
       });
     },
+    getOrder(context, orderId) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order/${orderId}`;
+
+      axios.get(api).then(response => {
+        // console.log(response.data);
+        if (response.data.success) {
+          context.commit('ORDER', response.data.order);
+        }
+      });
+    },
   },
   mutations: {
     ORDERS(state, orders) {
@@ -248,6 +263,9 @@ export default {
     FORM_MESSAGE(state, message) {
       state.form.message = message;
     },
+    ORDER(state, order) {
+      state.order = order;
+    },
   },
   getters: {
     orders(state) {
@@ -264,6 +282,9 @@ export default {
     },
     products(state) {
       return state.tempOrder.products;
+    },
+    order(state) {
+      return state.order;
     },
   },
 };

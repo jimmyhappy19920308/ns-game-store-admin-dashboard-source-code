@@ -60,34 +60,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      orderId: '',
-      order: {
-        products: [],
-        total: 0,
-        user: {},
-      },
-    };
-  },
   filters: {
     toFixed(n) {
       return n.toFixed(0);
     },
   },
+  computed: {
+    ...mapGetters('ordersModule', ['order']),
+  },
   methods: {
     getOrder() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order/${
-        vm.orderId
-      }`;
-      vm.$http.get(api).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          vm.order = response.data.order;
-        }
-      });
+      this.$store.dispatch('ordersModule/getOrder', this.$route.params.orderId);
     },
     payOrder() {
       const vm = this;
@@ -105,8 +91,7 @@ export default {
   },
   created() {
     const vm = this;
-    vm.orderId = vm.$route.params.orderId;
-    // console.log(vm.orderId);
+
     vm.getOrder();
   },
 };
