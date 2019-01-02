@@ -20,6 +20,10 @@ export default {
     pagination: {},
     isNew: false,
     isUploadImage: false,
+    product: {},
+    status: {
+      loadingItem: '',
+    },
   },
   actions: {
     getProducts(context, page) {
@@ -96,6 +100,24 @@ export default {
           $('#delProductModal').modal('hide');
           context.dispatch('getProducts');
           console.log('商品刪除失敗');
+        }
+      });
+    },
+    getProduct(context, id) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/product/${id}`;
+
+      context.commit('LOADING_ITEM', id);
+
+      axios.get(api).then(response => {
+        // console.log(response.data);
+        if (response.data.success) {
+          context.commit('PRODUCT', response.data.product);
+
+          $('#productModal').modal('show');
+
+          context.commit('LOADING_ITEM', '');
         }
       });
     },
@@ -191,6 +213,12 @@ export default {
     IS_UPLOAD_IMAGE(state, isUploadImage) {
       state.isUploadImage = isUploadImage;
     },
+    LOADING_ITEM(state, loadingItem) {
+      state.status.loadingItem = loadingItem;
+    },
+    PRODUCT(state, product) {
+      state.product = product;
+    },
   },
   getters: {
     products(state) {
@@ -207,6 +235,12 @@ export default {
     },
     isUploadImage(state) {
       return state.isUploadImage;
+    },
+    status(state) {
+      return state.status;
+    },
+    product(state) {
+      return state.product;
     },
   },
 };

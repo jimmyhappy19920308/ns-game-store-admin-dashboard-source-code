@@ -164,11 +164,7 @@ import $ from 'jquery';
 export default {
   data() {
     return {
-      product: {},
       isLoading: false,
-      status: {
-        loadingItem: '',
-      },
       form: {
         user: {
           name: '',
@@ -183,27 +179,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('productsModule', ['products']),
+    ...mapGetters('productsModule', ['products', 'product', 'status']),
   },
   methods: {
     getProducts(page = 1) {
       this.$store.dispatch('productsModule/getProducts', page);
     },
     getProduct(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${
-        process.env.VUE_APP_CUSTOM_PATH
-      }/product/${id}`;
-      vm.status.loadingItem = id;
-      vm.$http.get(api).then(response => {
-        // console.log(response.data);
-        if (response.data.success) {
-          vm.product = response.data.product;
-          $('#productModal').modal('show');
-          vm.status.loadingItem = '';
-        }
-        // console.log(vm.products);
-      });
+      this.$store.dispatch('productsModule/getProduct', id);
     },
     addToCart(id, qty = 1) {
       const vm = this;
