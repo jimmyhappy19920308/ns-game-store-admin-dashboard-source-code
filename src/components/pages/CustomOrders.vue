@@ -183,18 +183,8 @@ export default {
     };
   },
   methods: {
-    getProducts() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/products`;
-      vm.isLoading = true;
-      vm.$http.get(api).then(response => {
-        // console.log(response.data);
-        vm.isLoading = false;
-        if (response.data.success) {
-          vm.products = response.data.products;
-        }
-        // console.log(vm.products);
-      });
+    getProducts(page = 1) {
+      this.$store.dispatch('productsModule/getProduct', page);
     },
     getProduct(id) {
       const vm = this;
