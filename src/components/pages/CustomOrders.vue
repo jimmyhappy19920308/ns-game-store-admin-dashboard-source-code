@@ -112,7 +112,7 @@
           </tfoot>
         </table>
         <div class="input-group mb-3 input-group-sm">
-          <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
+          <input type="text" class="form-control" :value="coupon_code" @input="updateCouponCode" placeholder="請輸入優惠碼">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" @click="applyCouponCode">
               套用優惠碼
@@ -158,7 +158,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import $ from 'jquery';
 
 export default {
@@ -174,13 +174,13 @@ export default {
         },
         message: '',
       },
-      coupon_code: '',
     };
   },
   computed: {
     ...mapGetters('productsModule', ['products', 'product']),
     ...mapGetters('cartsModule', ['cart']),
     ...mapGetters(['status']),
+    ...mapState('couponsModule', ['coupon_code']),
   },
   methods: {
     getProducts(page = 1) {
@@ -199,19 +199,7 @@ export default {
       this.$store.dispatch('cartsModule/getCart');
     },
     applyCouponCode() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/coupon`;
-      const coupon = {
-        code: vm.coupon_code,
-      };
-      vm.isLoading = true;
-      vm.$http.post(api, { data: coupon }).then(response => {
-        // console.log(response);
-        if (response.data.success) {
-          vm.getCart();
-        }
-        vm.isLoading = false;
-      });
+      this.$store.dispatch('couponsModule/applyCouponCode');
     },
     createOrder() {
       const vm = this;
@@ -230,6 +218,9 @@ export default {
           });
         }
       });
+    },
+    updateCouponCode(e) {
+      this.$store.commit('couponsModule/COUPON_CODE', e.target.value);
     },
   },
   filters: {

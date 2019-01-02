@@ -15,6 +15,7 @@ export default {
       code: '',
     },
     pagination: {},
+    coupon_code: '',
   },
   actions: {
     getCoupons(context, page) {
@@ -109,6 +110,24 @@ export default {
         }
       });
     },
+    applyCouponCode(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/coupon`;
+      const coupon = {
+        code: context.state.coupon_code,
+      };
+
+      context.dispatch('updateLoading', true, { root: true });
+
+      axios.post(api, { data: coupon }).then(response => {
+        // console.log(response);
+        if (response.data.success) {
+          context.dispatch('cartsModule/getCart', null, { root: true });
+          context.dispatch('updateLoading', false, { root: true });
+        } else {
+          context.dispatch('updateLoading', false, { root: true });
+        }
+      });
+    },
   },
   mutations: {
     COUPONS(state, coupons) {
@@ -137,6 +156,9 @@ export default {
     },
     PAGINATION(state, pagination) {
       state.pagination = pagination;
+    },
+    COUPON_CODE(state, couponCode) {
+      state.coupon_code = couponCode;
     },
   },
   getters: {
