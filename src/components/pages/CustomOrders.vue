@@ -159,7 +159,6 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex';
-import $ from 'jquery';
 
 export default {
   computed: {
