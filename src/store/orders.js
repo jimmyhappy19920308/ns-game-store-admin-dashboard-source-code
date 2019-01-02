@@ -1,5 +1,6 @@
 import axios from 'axios';
 import $ from 'jquery';
+import router from '../router';
 
 export default {
   namespaced: true,
