@@ -174,12 +174,12 @@ export default {
         },
         message: '',
       },
-      cart: {},
       coupon_code: '',
     };
   },
   computed: {
     ...mapGetters('productsModule', ['products', 'product', 'status']),
+    ...mapGetters('cartsModule', ['cart']),
   },
   methods: {
     getProducts(page = 1) {
@@ -222,15 +222,7 @@ export default {
       });
     },
     getCart() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/cart`;
-      vm.$http.get(api).then(response => {
-        if (response.data.success) {
-          vm.cart = response.data.data;
-          // console.log(vm.cart);
-        }
-        // console.log(vm.products);
-      });
+      this.$store.dispatch('cartsModule/getCart');
     },
     applyCouponCode() {
       const vm = this;
