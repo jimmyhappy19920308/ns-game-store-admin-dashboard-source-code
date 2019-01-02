@@ -114,7 +114,7 @@
         <div class="input-group mb-3 input-group-sm">
           <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
+            <button class="btn btn-outline-secondary" type="button" @click="applyCouponCode">
               套用優惠碼
             </button>
           </div>
@@ -256,7 +256,7 @@ export default {
         // console.log(vm.products);
       });
     },
-    addCouponCode() {
+    applyCouponCode() {
       const vm = this;
       const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/coupon`;
       const coupon = {
