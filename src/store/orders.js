@@ -63,6 +63,15 @@ export default {
       num: 1,
     },
     newDate: 0,
+    form: {
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+      },
+      message: '',
+    },
   },
   actions: {
     getOrders(context, page) {
@@ -172,6 +181,17 @@ export default {
         }
       });
     },
+    createOrder(context) {
+      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
+      const order = context.state.form;
+
+      axios.post(api, { data: order }).then(response => {
+        console.log('訂單已建立', response);
+        if (response.data.success) {
+          router.push(`/custom-checkout/${response.data.orderId}`);
+        }
+      });
+    },
   },
   mutations: {
     ORDERS(state, orders) {
@@ -212,6 +232,21 @@ export default {
     },
     IS_PAID(state, isPaid) {
       state.tempOrder.is_paid = isPaid;
+    },
+    FORM_USER_EMAIL(state, email) {
+      state.form.user.email = email;
+    },
+    FORM_USER_NAME(state, name) {
+      state.form.user.name = name;
+    },
+    FORM_USER_TEL(state, tel) {
+      state.form.user.tel = tel;
+    },
+    FORM_USER_ADDRESS(state, address) {
+      state.form.user.address = address;
+    },
+    FORM_MESSAGE(state, message) {
+      state.form.message = message;
     },
   },
   getters: {

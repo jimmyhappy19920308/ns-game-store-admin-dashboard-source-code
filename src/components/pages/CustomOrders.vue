@@ -125,29 +125,29 @@
       <form class="col-md-6" @submit.prevent="createOrder">
         <div class="form-group">
           <label for="useremail">Email</label>
-          <input type="email" class="form-control" name="email" id="useremail" v-validate="'required|email'" v-model="form.user.email" placeholder="請輸入 Email">
+          <input type="email" class="form-control" name="email" id="useremail" v-validate="'required|email'" v-model="email" placeholder="請輸入 Email">
           <span class="text-danger">
             {{ errors.first('email') }}
           </span>
         </div>
         <div class="form-group">
           <label for="username">收件人姓名</label>
-          <input type="text" class="form-control" name="name" id="username" v-validate="'required'" v-model="form.user.name" placeholder="輸入姓名">
+          <input type="text" class="form-control" name="name" id="username" v-validate="'required'" v-model="name" placeholder="輸入姓名">
           <span class="text-danger" v-if="errors.has('name')">請輸入姓名</span>
         </div>
         <div class="form-group">
           <label for="usertel">收件人電話</label>
-          <input type="tel" class="form-control" name="usertel" id="usertel" v-validate="{ required: true, regex: /^09\d{8}$/ }" v-model="form.user.tel" placeholder="0975655123">
+          <input type="tel" class="form-control" name="usertel" id="usertel" v-validate="{ required: true, regex: /^09\d{8}$/ }" v-model="tel" placeholder="0975655123">
           <span class="text-danger" v-if="errors.has('usertel')">此欄位不得留空或格式錯誤</span>
         </div>
         <div class="form-group">
           <label for="useraddress">收件人地址</label>
-          <input type="address" class="form-control" name="address" id="useraddress" v-validate="'required'" v-model="form.user.address" placeholder="請輸入地址">
+          <input type="address" class="form-control" name="address" id="useraddress" v-validate="'required'" v-model="address" placeholder="請輸入地址">
           <span class="text-danger" v-if="errors.has('address')">地址欄位不得留空</span>
         </div>
         <div class="form-group">
           <label for="useraddress">留言</label>
-          <textarea name="" id="" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
+          <textarea name="" id="" class="form-control" cols="30" rows="10" v-model="message"></textarea>
         </div>
         <div class="text-right">
           <button class="btn btn-danger" @click.prevent="createOrder">送出訂單</button>
@@ -162,25 +162,51 @@ import { mapGetters, mapState } from 'vuex';
 import $ from 'jquery';
 
 export default {
-  data() {
-    return {
-      isLoading: false,
-      form: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: '',
-        },
-        message: '',
-      },
-    };
-  },
   computed: {
     ...mapGetters('productsModule', ['products', 'product']),
     ...mapGetters('cartsModule', ['cart']),
     ...mapGetters(['status']),
     ...mapState('couponsModule', ['coupon_code']),
+    email: {
+      get(){
+        return this.$store.state.ordersModule.form.user.email;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/FORM_USER_EMAIL', value);
+      }
+    },
+    name: {
+      get() {
+        return this.$store.state.ordersModule.form.user.name;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/FORM_USER_NAME', value);
+      }
+    },
+    tel: {
+      get() {
+        return this.$store.state.ordersModule.form.user.tel;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/FORM_USER_TEL', value);
+      },
+    },
+    address: {
+      get() {
+        return this.$store.state.ordersModule.form.user.address;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/FORM_USER_ADDRESS', value);
+      },
+    },
+    message: {
+      get() {
+        return this.$store.state.ordersModule.form.message;
+      },
+      set(value) {
+        this.$store.commit('ordersModule/FORM_MESSAGE', value);
+      },
+    }
   },
   methods: {
     getProducts(page = 1) {
@@ -202,20 +228,12 @@ export default {
       this.$store.dispatch('couponsModule/applyCouponCode');
     },
     createOrder() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
-      const order = vm.form;
       this.$validator.validate().then(result => {
         if (!result) {
           // do stuff if not valid.
           console.log('請確認所有欄位皆正確填寫');
         } else {
-          vm.$http.post(api, { data: order }).then(response => {
-            console.log('訂單已建立', response);
-            if (response.data.success) {
-              vm.$router.push(`/custom-checkout/${response.data.orderId}`);
-            }
-          });
+          this.$store.dispatch('ordersModule/createOrder');
         }
       });
     },
