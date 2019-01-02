@@ -64,7 +64,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   date() {
-    return  {
+    return {
       id: '',
     };
   },

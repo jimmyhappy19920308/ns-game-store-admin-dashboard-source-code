@@ -168,12 +168,12 @@ export default {
     ...mapGetters(['status']),
     ...mapState('couponsModule', ['coupon_code']),
     email: {
-      get(){
+      get() {
         return this.$store.state.ordersModule.form.user.email;
       },
       set(value) {
         this.$store.commit('ordersModule/FORM_USER_EMAIL', value);
-      }
+      },
     },
     name: {
       get() {
@@ -181,7 +181,7 @@ export default {
       },
       set(value) {
         this.$store.commit('ordersModule/FORM_USER_NAME', value);
-      }
+      },
     },
     tel: {
       get() {
@@ -206,7 +206,7 @@ export default {
       set(value) {
         this.$store.commit('ordersModule/FORM_MESSAGE', value);
       },
-    }
+    },
   },
   methods: {
     getProducts(page = 1) {

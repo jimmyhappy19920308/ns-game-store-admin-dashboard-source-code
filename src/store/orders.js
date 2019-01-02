@@ -203,7 +203,9 @@ export default {
       });
     },
     getOrder(context, orderId) {
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order/${orderId}`;
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/order/${orderId}`;
 
       axios.get(api).then(response => {
         // console.log(response.data);
@@ -213,7 +215,9 @@ export default {
       });
     },
     payOrder(context, orderId) {
-      const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/pay/${orderId}`;
+      const api = `${process.env.VUE_APP_API_PATH}/api/${
+        process.env.VUE_APP_CUSTOM_PATH
+      }/pay/${orderId}`;
       axios.post(api).then(response => {
         // console.log(response.data);
         if (response.data.success) {
