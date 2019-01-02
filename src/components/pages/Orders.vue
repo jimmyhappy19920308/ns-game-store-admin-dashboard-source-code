@@ -128,7 +128,7 @@
         </div>
       </div>
     </div>
-    <pagination-component :parent-pagination="pagination" @get-page="getOrders"></pagination-component>
+    <pagination-component></pagination-component>
   </div>
 </template>
 
