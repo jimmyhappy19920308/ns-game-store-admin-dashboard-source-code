@@ -164,7 +164,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex';
-import Pagination from './Pagination';
+import Pagination from './Pagination.vue';
 
 export default {
   components: {
