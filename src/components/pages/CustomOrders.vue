@@ -73,6 +73,11 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <pagination-component></pagination-component>
+      </div>
+    </div>
     <div class="my-5 row justify-content-center">
       <div class="my-5 row justify-content-center">
         <table class="table">
@@ -120,7 +125,6 @@
           </div>
         </div>
       </div>
-      <pagination-component></pagination-component>
     </div>
     <div class="my-5 row justify-content-center">
       <form class="col-md-6" @submit.prevent="createOrder">
