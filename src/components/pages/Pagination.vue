@@ -34,7 +34,7 @@ export default {
 
       if (moduleName === '/admin/orders') {
         moduleName = 'ordersModule';
-      } else if (moduleName === '/admin/products' || '/custom-orders') {
+      } else if (moduleName === '/admin/products' || moduleName === '/custom-orders') {
         moduleName = 'productsModule';
       } else if (moduleName === '/admin/coupons') {
         moduleName = 'couponsModule';
@@ -51,7 +51,7 @@ export default {
       if (moduleName === '/admin/orders') {
         moduleName = 'ordersModule';
         methodName = 'getOrders';
-      } else if (moduleName === '/admin/products' || '/custom-orders') {
+      } else if (moduleName === '/admin/products' || moduleName === '/custom-orders') {
         moduleName = 'productsModule';
         methodName = 'getProducts';
       } else if (moduleName === '/admin/coupons') {
