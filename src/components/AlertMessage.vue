@@ -2,9 +2,9 @@
   <div class="message-alert">
     <div class="alert alert-dismissible"
       :class="'alert-' + item.status"
-      v-for="(item, i) in messages" :key="i">
+      v-for="(item, index) in messages" :key="index">
       {{ item.message }}
-      <button type="button" class="close" @click="removeMessage(i)" aria-label="Close">
+      <button type="button" class="close" @click="removeMessage(index)" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -22,8 +22,8 @@ export default {
     updateMessage(message, status) {
       this.$store.dispatch('messageModule/updateMessage', { message, status });
     },
-    removeMessage(num) {
-      this.messages.splice(num, 1);
+    removeMessage(index) {
+      this.$store.dispatch('messageModule/removeMessage', index);
     },
   },
   created() {
