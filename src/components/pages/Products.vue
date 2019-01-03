@@ -161,12 +161,7 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('productsModule', [
-      'products',
-      'tempProduct',
-      'isNew',
-      'isUploadImage',
-    ]),
+    ...mapGetters('productsModule', ['products', 'tempProduct', 'isNew', 'isUploadImage']),
     isEnabled: {
       get() {
         return this.$store.state.productsModule.tempProduct.is_enabled;
