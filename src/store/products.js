@@ -114,7 +114,6 @@ export default {
         } else {
           $('#delProductModal').modal('hide');
           context.dispatch('getProducts');
-          console.log('商品刪除失敗');
 
           const { message } = response.data;
           const status = 'danger';
