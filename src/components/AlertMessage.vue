@@ -26,9 +26,6 @@ export default {
       this.$store.dispatch('messageModule/removeMessage', index);
     },
   },
-  created() {
-    const vm = this;
-  },
 };
 </script>
 
