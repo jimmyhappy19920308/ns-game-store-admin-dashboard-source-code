@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: {
-    message: '',
+    messages: [],
   },
   actions: {
     updateMessage(context, { message, status }) {
@@ -28,15 +28,15 @@ export default {
   },
   mutations: {
     UPDATE_MESSAGE(state, payload) {
-      state.message = state.message.push(payload);
+      state.message = state.messages.push(payload);
     },
     REMOVE_MESSAGE(state, index) {
-      state.message = state.message.splice(index, 1);
+      state.message = state.messages.splice(index, 1);
     },
   },
   getters: {
-    message(state) {
-      return state.message;
+    messages(state) {
+      return state.messages;
     },
   },
 };
