@@ -104,11 +104,22 @@ export default {
         // console.log(response.data);
         if (response.data.success) {
           $('#delProductModal').modal('hide');
+
           context.dispatch('getProducts');
+
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
         } else {
           $('#delProductModal').modal('hide');
           context.dispatch('getProducts');
           console.log('商品刪除失敗');
+
+          const { message } = response.data;
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
         }
       });
     },
