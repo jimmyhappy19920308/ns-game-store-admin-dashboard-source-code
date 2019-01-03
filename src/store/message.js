@@ -20,7 +20,7 @@ export default {
         context.state.messages.forEach((item, index) => {
           if (item.timestamp === timestamp) {
             // context.state.messages.splice(i, 1);
-            context.commit('REMOVE_MESSAGE', index);
+            context.commit('REMOVE_MESSAGE_TIMING', index);
           }
         });
       }, 5000);
@@ -30,7 +30,7 @@ export default {
     UPDATE_MESSAGE(state, payload) {
       state.message = state.messages.push(payload);
     },
-    REMOVE_MESSAGE(state, index) {
+    REMOVE_MESSAGE_TIMING(state, index) {
       state.message = state.messages.splice(index, 1);
     },
   },
