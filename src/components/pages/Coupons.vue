@@ -117,7 +117,7 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('couponsModule', ['coupons', 'isNew', 'tempCoupon', 'pagination']),
+    ...mapGetters('couponsModule', ['coupons', 'isNew', 'tempCoupon']),
     title: {
       get() {
         return this.$store.state.couponsModule.tempCoupon.title;

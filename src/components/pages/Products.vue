@@ -163,7 +163,6 @@ export default {
   computed: {
     ...mapGetters('productsModule', [
       'products',
-      'pagination',
       'tempProduct',
       'isNew',
       'isUploadImage',

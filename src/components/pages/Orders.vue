@@ -141,7 +141,7 @@ export default {
     'pagination-component': Pagination,
   },
   computed: {
-    ...mapGetters('ordersModule', ['orders', 'newDate', 'tempOrder', 'pagination', 'products']),
+    ...mapGetters('ordersModule', ['orders', 'newDate', 'tempOrder', 'products']),
     newDate: {
       get() {
         return this.$store.state.ordersModule.newDate;
