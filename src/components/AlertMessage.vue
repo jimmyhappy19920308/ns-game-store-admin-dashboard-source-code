@@ -12,12 +12,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: 'Navbar',
-  data() {
-    return {
-      messages: [],
-    };
+  computed: {
+    ...mapGetters('messageModule', ['message']),
   },
   methods: {
     updateMessage(message, status) {
