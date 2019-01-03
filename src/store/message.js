@@ -32,13 +32,13 @@ export default {
   },
   mutations: {
     UPDATE_MESSAGE(state, payload) {
-      state.messages = state.messages.push(payload);
+      state.messages.push(payload);
     },
     REMOVE_MESSAGE(state, index) {
-      state.messages = state.messages.splice(index, 1);
+      state.messages.splice(index, 1);
     },
     REMOVE_MESSAGE_TIMING(state, index) {
-      state.messages = state.messages.splice(index, 1);
+      state.messages.splice(index, 1);
     },
   },
   getters: {
