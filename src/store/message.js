@@ -16,14 +16,12 @@ export default {
       context.dispatch('removeMessageWithTiming', timestamp);
     },
     removeMessage(context, index) {
-      // this.messages.splice(num, 1);
       context.commit('REMOVE_MESSAGE', index);
     },
     removeMessageWithTiming(context, timestamp) {
       setTimeout(() => {
         context.state.messages.forEach((item, index) => {
           if (item.timestamp === timestamp) {
-            // context.state.messages.splice(i, 1);
             context.commit('REMOVE_MESSAGE_TIMING', index);
           }
         });
