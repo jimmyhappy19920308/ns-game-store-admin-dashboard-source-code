@@ -31,13 +31,15 @@ export default {
     // ...mapGetters('productsModule', ['pagination']),
     pagination() {
       let moduleName = this.$route.path;
+
       if (moduleName === '/admin/orders') {
         moduleName = 'ordersModule';
-      } else if (moduleName === '/admin/products') {
+      } else if (moduleName === '/admin/products' || '/custom-orders') {
         moduleName = 'productsModule';
       } else if (moduleName === '/admin/coupons') {
         moduleName = 'couponsModule';
       }
+
       return this.$store.state[moduleName].pagination;
     },
   },
@@ -45,16 +47,18 @@ export default {
     getCurrentPage(page) {
       let moduleName = this.$route.path;
       let methodName = '';
+
       if (moduleName === '/admin/orders') {
         moduleName = 'ordersModule';
         methodName = 'getOrders';
-      } else if (moduleName === '/admin/products') {
+      } else if (moduleName === '/admin/products' || '/custom-orders') {
         moduleName = 'productsModule';
         methodName = 'getProducts';
       } else if (moduleName === '/admin/coupons') {
         moduleName = 'couponsModule';
         methodName = 'getCoupons';
       }
+
       this.$store.dispatch(`${moduleName}/${methodName}`, page);
     },
   },
