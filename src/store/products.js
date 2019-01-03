@@ -64,7 +64,6 @@ export default {
         httpMethod = 'put';
       }
       axios[httpMethod](api, { data: context.state.tempProduct }).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           $('#productModal').modal('hide');
           context.dispatch('productsModule/getProducts', null, { root: true });
@@ -101,7 +100,6 @@ export default {
         process.env.VUE_APP_CUSTOM_PATH
       }/admin/product/${id}`;
       axios.delete(api).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           $('#delProductModal').modal('hide');
 
@@ -130,7 +128,6 @@ export default {
       context.dispatch('updateLoadingItem', id, { root: true });
 
       axios.get(api).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           context.commit('PRODUCT', response.data.product);
 
@@ -144,7 +141,6 @@ export default {
       const api = `${process.env.VUE_APP_API_PATH}/api/${
         process.env.VUE_APP_CUSTOM_PATH
       }/admin/upload`;
-      // console.log(vm);
       const formData = new FormData();
       formData.append('file-to-upload', uploadedImage);
       context.commit('IS_UPLOAD_IMAGE', true);
