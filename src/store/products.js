@@ -70,8 +70,16 @@ export default {
           context.dispatch('productsModule/getProducts', null, { root: true });
           if (context.state.isNew) {
             console.log('新增成功');
+            const { message } = response.data;
+            const status = 'success';
+
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           } else {
             console.log('編輯成功');
+            const { message } = response.data;
+            const status = 'success';
+
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           }
         } else {
           $('#productModal').modal('hide');
