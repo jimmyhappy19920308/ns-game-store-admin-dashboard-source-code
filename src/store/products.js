@@ -83,13 +83,11 @@ export default {
           $('#productModal').modal('hide');
           context.dispatch('productsModule/getProducts', null, { root: true });
           if (context.state.isNew) {
-            console.log('新增失敗');
             const { message } = response.data;
             const status = 'danger';
 
             context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           } else {
-            console.log('編輯失敗');
             const { message } = response.data;
             const status = 'danger';
 
