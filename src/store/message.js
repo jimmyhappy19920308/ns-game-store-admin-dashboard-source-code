@@ -28,10 +28,10 @@ export default {
   },
   mutations: {
     UPDATE_MESSAGE(state, payload) {
-      state.message = state.messages.push(payload);
+      state.messages = state.messages.push(payload);
     },
     REMOVE_MESSAGE_TIMING(state, index) {
-      state.message = state.messages.splice(index, 1);
+      state.messages = state.messages.splice(index, 1);
     },
   },
   getters: {
