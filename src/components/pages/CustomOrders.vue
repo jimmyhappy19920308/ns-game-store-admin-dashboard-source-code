@@ -159,8 +159,12 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex';
+import Pagination from './Pagination';
 
 export default {
+  components: {
+    'pagination-component': Pagination,
+  },
   computed: {
     ...mapGetters('productsModule', ['products', 'product']),
     ...mapGetters('cartsModule', ['cart']),
