@@ -137,7 +137,10 @@ export default {
             context.commit('IMAGE_URL', response.data.imageUrl);
             context.commit('IS_UPLOAD_IMAGE', false);
           } else {
-            // vm.$bus.$emit('message:push', response.data.message, 'danger');
+            const { message } = response.data;
+            const status = 'danger';
+
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
             context.commit('IS_UPLOAD_IMAGE', false);
           }
         });
