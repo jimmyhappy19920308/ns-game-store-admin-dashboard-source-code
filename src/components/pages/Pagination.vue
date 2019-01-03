@@ -60,6 +60,8 @@ export default {
       }
 
       this.$store.dispatch(`${moduleName}/${methodName}`, page);
+
+      window.scrollTo(0, 0);
     },
   },
 };
