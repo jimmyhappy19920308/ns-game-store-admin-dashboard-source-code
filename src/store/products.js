@@ -156,6 +156,10 @@ export default {
         })
         .then(response => {
           if (response.data.success) {
+            const { message } = response.data;
+            const status = 'success';
+
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
             context.commit('IMAGE_URL', response.data.imageUrl);
             context.commit('IS_UPLOAD_IMAGE', false);
           } else {
