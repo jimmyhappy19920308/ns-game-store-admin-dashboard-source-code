@@ -156,7 +156,7 @@ export default {
         })
         .then(response => {
           if (response.data.success) {
-            const { message } = response.data;
+            const message = '圖片上傳成功';
             const status = 'success';
 
             context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
