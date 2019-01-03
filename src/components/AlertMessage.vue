@@ -16,7 +16,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters('messageModule', ['message']),
+    ...mapGetters('messageModule', ['messages']),
   },
   methods: {
     updateMessage(message, status) {
