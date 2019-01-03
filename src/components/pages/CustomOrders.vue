@@ -120,6 +120,7 @@
           </div>
         </div>
       </div>
+      <pagination-component></pagination-component>
     </div>
     <div class="my-5 row justify-content-center">
       <form class="col-md-6" @submit.prevent="createOrder">
