@@ -13,7 +13,6 @@ export default {
         if (response.data.success) {
           context.commit('CART', response.data.data);
         }
-        // console.log(vm.products);
       });
     },
     addToCart(context, { id, qty }) {
