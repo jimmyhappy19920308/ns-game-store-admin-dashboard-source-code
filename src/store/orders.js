@@ -244,8 +244,6 @@ export default {
 
           context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('getOrder', orderId);
-
-          console.log(response.data.message);
         }
       });
     },
