@@ -204,7 +204,6 @@ export default {
       const order = context.state.form;
 
       axios.post(api, { data: order }).then(response => {
-        console.log('訂單已建立', response);
         if (response.data.success) {
           const { message } = response.data;
           const status = 'success';
