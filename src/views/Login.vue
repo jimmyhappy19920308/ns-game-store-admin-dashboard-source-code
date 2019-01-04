@@ -22,6 +22,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import AlertMessage from '../components/AlertMessage.vue';
 
 export default {
   computed: {
