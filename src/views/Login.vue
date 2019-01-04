@@ -5,9 +5,9 @@
       <img class="mb-4" src="" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="username" required autofocus>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="username" required autofocus @keyup.enter="signIn">
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="password">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="password" @keyup.enter="signIn">
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import AlertMessage from '../components/AlertMessage.vue';
 
 export default {
@@ -30,7 +29,6 @@ export default {
     'alert-message': AlertMessage,
   },
   computed: {
-    ...mapGetters('authModule', ['username', 'password']),
     username: {
       get() {
         return this.$store.state.authModule.username;
