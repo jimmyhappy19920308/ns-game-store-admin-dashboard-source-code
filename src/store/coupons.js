@@ -115,8 +115,6 @@ export default {
           $('#delCouponModal').modal('hide');
 
           context.dispatch('getCoupons');
-
-          console.log('優惠券刪除成功');
         } else {
           $('#delCouponModal').modal('hide');
 
