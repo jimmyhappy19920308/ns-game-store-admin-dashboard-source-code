@@ -92,7 +92,6 @@ export default {
       context.dispatch('updateLoading', true, { root: true });
 
       axios.get(api).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           context.commit('ORDERS', response.data.orders.filter(order => !order.isRemove));
           context.commit('PAGINATION', response.data.pagination);
@@ -144,7 +143,6 @@ export default {
         isRemove: true,
       };
       axios.put(api, { data: removeOrder }).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           const message = '已刪除該筆訂單';
           const status = 'success';
@@ -180,7 +178,6 @@ export default {
       context.dispatch('updateLoading', true, { root: true });
 
       axios.put(api, { data: context.state.tempOrder }).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           const { message } = response.data;
           const status = 'success';
@@ -225,7 +222,6 @@ export default {
       context.dispatch('updateLoading', true, { root: true });
 
       axios.get(api).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           context.dispatch('updateLoading', false, { root: true });
 
@@ -240,7 +236,6 @@ export default {
         process.env.VUE_APP_CUSTOM_PATH
       }/pay/${orderId}`;
       axios.post(api).then(response => {
-        // console.log(response.data);
         if (response.data.success) {
           const { message } = response.data;
           const status = 'success';
