@@ -67,8 +67,16 @@ export default {
           context.dispatch('getCoupons');
 
           if (context.state.isNew) {
+            const { message } = response.data;
+            const status = 'success';
+  
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
             console.log('Copon 新增成功');
           } else {
+            const { message } = response.data;
+            const status = 'success';
+  
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
             console.log('Copon 編輯成功');
           }
         } else {
