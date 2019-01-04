@@ -27,6 +27,10 @@ export default {
 
       axios.post(api, { data: cart }).then(response => {
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoadingItem', '', { root: true });
           context.dispatch('getCart');
 
