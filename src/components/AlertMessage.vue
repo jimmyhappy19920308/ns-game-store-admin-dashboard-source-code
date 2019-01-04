@@ -19,9 +19,6 @@ export default {
     ...mapGetters('messageModule', ['messages']),
   },
   methods: {
-    updateMessage(message, status) {
-      this.$store.dispatch('messageModule/updateMessage', { message, status });
-    },
     removeMessage(index) {
       this.$store.dispatch('messageModule/removeMessage', index);
     },
