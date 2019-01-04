@@ -87,13 +87,11 @@ export default {
             const status = 'danger';
 
             context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
-            console.log('Copon 新增失敗');
           } else {
             const { message } = response.data;
             const status = 'danger';
 
             context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
-            console.log('Copon 編輯失敗');
           }
         }
       });
