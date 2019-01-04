@@ -179,17 +179,23 @@ export default {
       axios.put(api, { data: context.state.tempOrder }).then(response => {
         // console.log(response.data);
         if (response.data.success) {
-          $('#orderModal').modal('hide');
+          const { message } = response.data;
+          const status = 'success';
 
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('getOrders');
-
           context.dispatch('updateLoading', false, { root: true });
+
+          $('#orderModal').modal('hide');
         } else {
-          $('#orderModal').modal('hide');
+          const { message } = response.data;
+          const status = 'danger';
 
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('getOrders');
-
           context.dispatch('updateLoading', false, { root: true });
+
+          $('#orderModal').modal('hide');
 
           console.log(response.data.message);
         }
