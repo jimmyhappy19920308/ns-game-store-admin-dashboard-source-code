@@ -117,7 +117,7 @@ export default {
           context.dispatch('getCoupons');
         } else {
           const { message } = response.data;
-          const status = 'success';
+          const status = 'danger';
 
           context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
 
