@@ -1,22 +1,22 @@
 <template>
   <div>
     <alert-message></alert-message>
-    <form class="form-signin">
+    <form class="form-signin mt-5">
       <img class="mb-4" src="" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <h1 class="h5 my-5 font-weight-normal text-danger text-center">NS GameStore 後台系統</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="username" required autofocus @keyup.enter="signIn">
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="password" @keyup.enter="signIn">
-      <div class="checkbox mb-3">
+<!--       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="button" @click.prevent="signIn">
+      </div> -->
+      <button class="btn btn-lg btn-primary btn-block mt-5" type="button" @click.prevent="signIn">
         Sign in
       </button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
     </form>
   </div>
 </template>
@@ -61,12 +61,11 @@ export default {
 </script>
 
 <style scoped>
-html,
-body {
-  height: 100%;
+html {
+  height: 100vh;
 }
-
 body {
+  min-height: 100vh;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
