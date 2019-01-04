@@ -239,7 +239,6 @@ export default {
       this.$validator.validate().then(result => {
         if (!result) {
           // do stuff if not valid.
-          console.log('請確認所有欄位皆正確填寫');
         } else {
           this.$store.dispatch('ordersModule/createOrder');
         }
