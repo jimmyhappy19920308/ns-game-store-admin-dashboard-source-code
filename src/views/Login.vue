@@ -3,7 +3,7 @@
     <alert-message></alert-message>
     <form class="form-signin mt-5">
       <img class="mb-4" src="" alt="" width="72" height="72">
-      <h1 class="h5 my-5 font-weight-normal text-danger text-center">NS GameStore 後台系統</h1>
+      <h1 class="h5 my-5 font-weight-normal text-danger text-center"><i class="fab fa-nintendo-switch mr-3"></i>NS GameStore 後台系統</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="username" required autofocus @keyup.enter="signIn">
       <label for="inputPassword" class="sr-only">Password</label>
