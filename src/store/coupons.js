@@ -138,9 +138,17 @@ export default {
       axios.post(api, { data: coupon }).then(response => {
         // console.log(response);
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('cartsModule/getCart', null, { root: true });
           context.dispatch('updateLoading', false, { root: true });
         } else {
+          const { message } = response.data;
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
         }
       });
