@@ -16,6 +16,11 @@ export default {
         // console.log(response.data);
         if (response.data.success) {
           router.push('/admin/products');
+        } else {
+          const { message } = response.data;
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
         }
       });
     },
