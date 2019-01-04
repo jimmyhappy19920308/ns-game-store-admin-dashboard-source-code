@@ -98,6 +98,10 @@ export default {
           context.commit('PAGINATION', response.data.pagination);
           context.dispatch('updateLoading', false, { root: true });
         } else {
+          const { message } = response.data;
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
           console.log(response.data.message);
         }
