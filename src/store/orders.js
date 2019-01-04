@@ -143,6 +143,10 @@ export default {
       axios.put(api, { data: removeOrder }).then(response => {
         // console.log(response.data);
         if (response.data.success) {
+          const message = '已刪除該筆訂單';
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
 
           $('#delOrderModal').modal('hide');
