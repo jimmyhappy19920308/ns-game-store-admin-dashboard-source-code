@@ -47,6 +47,10 @@ export default {
 
       axios.delete(api).then(response => {
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('getCart');
           context.dispatch('updateLoading', false, { root: true });
         }
