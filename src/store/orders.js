@@ -152,8 +152,6 @@ export default {
           $('#delOrderModal').modal('hide');
 
           context.dispatch('getOrders');
-
-          console.log('訂單刪除成功');
         } else {
           const message = '該筆訂單刪除失敗';
           const status = 'danger';
@@ -164,8 +162,6 @@ export default {
           $('#delOrderModal').modal('hide');
 
           context.dispatch('getOrders');
-
-          console.log(response.data.message);
         }
       });
     },
