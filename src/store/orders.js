@@ -155,6 +155,10 @@ export default {
 
           console.log('訂單刪除成功');
         } else {
+          const message = '該筆訂單刪除失敗';
+          const status = 'danger';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
 
           $('#delOrderModal').modal('hide');
