@@ -5,9 +5,9 @@
       <img class="mb-4" src="" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" :value="username" @input="updateUserName" required autofocus>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="username" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required :value="password" @input="updatePassword">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="password">
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
@@ -31,6 +31,22 @@ export default {
   },
   computed: {
     ...mapGetters('authModule', ['username', 'password']),
+    username: {
+      get() {
+        return this.$store.state.authModule.username;
+      },
+      set(value) {
+        this.$store.commit('authModule/USER_NAME', value);
+      },
+    },
+    password: {
+      get() {
+        return this.$store.state.authModule.password;
+      },
+      set(value) {
+        this.$store.commit('authModule/PASSWORD', value);
+      },
+    },
   },
   methods: {
     signIn() {
