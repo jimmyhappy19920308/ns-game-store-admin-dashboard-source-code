@@ -103,7 +103,6 @@ export default {
 
           context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('updateLoading', false, { root: true });
-          console.log(response.data.message);
         }
       });
     },
