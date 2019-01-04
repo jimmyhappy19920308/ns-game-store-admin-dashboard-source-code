@@ -239,6 +239,10 @@ export default {
       axios.post(api).then(response => {
         // console.log(response.data);
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           context.dispatch('getOrder', orderId);
 
           console.log(response.data.message);
