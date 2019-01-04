@@ -1,5 +1,6 @@
 <template>
   <div>
+    <alert-message></alert-message>
     <form class="form-signin">
       <img class="mb-4" src="" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -25,6 +26,9 @@ import { mapGetters } from 'vuex';
 import AlertMessage from '../components/AlertMessage.vue';
 
 export default {
+  components: {
+    'alert-message': AlertMessage,
+  },
   computed: {
     ...mapGetters('authModule', ['username', 'password']),
   },
