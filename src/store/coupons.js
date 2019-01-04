@@ -69,12 +69,12 @@ export default {
           if (context.state.isNew) {
             const { message } = response.data;
             const status = 'success';
-  
+
             context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           } else {
             const { message } = response.data;
             const status = 'success';
-  
+
             context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
           }
         } else {
@@ -83,8 +83,16 @@ export default {
           context.dispatch('getCoupons');
 
           if (context.state.isNew) {
+            const { message } = response.data;
+            const status = 'danger';
+
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
             console.log('Copon 新增失敗');
           } else {
+            const { message } = response.data;
+            const status = 'danger';
+
+            context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
             console.log('Copon 編輯失敗');
           }
         }
