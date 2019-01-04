@@ -196,8 +196,6 @@ export default {
           context.dispatch('updateLoading', false, { root: true });
 
           $('#orderModal').modal('hide');
-
-          console.log(response.data.message);
         }
       });
     },
