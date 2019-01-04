@@ -136,7 +136,6 @@ export default {
       context.dispatch('updateLoading', true, { root: true });
 
       axios.post(api, { data: coupon }).then(response => {
-        // console.log(response);
         if (response.data.success) {
           const { message } = response.data;
           const status = 'success';
