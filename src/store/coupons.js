@@ -107,6 +107,11 @@ export default {
         context.dispatch('updateLoading', false, { root: true });
 
         if (response.data.success) {
+          const { message } = response.data;
+          const status = 'success';
+
+          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
+
           $('#delCouponModal').modal('hide');
 
           context.dispatch('getCoupons');
