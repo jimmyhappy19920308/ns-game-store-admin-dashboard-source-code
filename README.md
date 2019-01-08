@@ -30,6 +30,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ---
 
+## Demo
+
+[Demo](https://yingming25.github.io/ns-game-store-admin-dashboard/#/admin/products)
+
+---
+
 ## 簡介
 此為前端練習作品，主要功能為：
 產品、訂單、優惠券的新增刪除修改。
