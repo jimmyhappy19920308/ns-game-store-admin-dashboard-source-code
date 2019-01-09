@@ -8,18 +8,17 @@ export default {
       username: '',
       password: '',
     },
+    errorMessage: '',
   },
   actions: {
     signIn(context) {
       const api = `${process.env.VUE_APP_API_PATH}/admin/signin`;
+
       axios.post(api, context.state.user).then(response => {
         if (response.data.success) {
           router.push('/admin/products');
         } else {
-          const { message } = response.data;
-          const status = 'danger';
-
-          context.dispatch('messageModule/updateMessage', { message, status }, { root: true });
+          context.commit('ERROR_MESSAGE', response.data.message);
         }
       });
     },
@@ -44,6 +43,9 @@ export default {
     },
     PASSWORD(state, password) {
       state.user.password = password;
+    },
+    ERROR_MESSAGE(state, errorMessage) {
+      state.errorMessage = errorMessage;
     },
   },
   getters: {

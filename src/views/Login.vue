@@ -4,29 +4,32 @@
       <img class="mb-4" src="" alt="" width="72" height="72">
       <h1 class="h5 my-5 font-weight-normal text-danger text-center"><i class="fab fa-nintendo-switch mr-3"></i>NS GameStore 後台系統</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="username" required autofocus @keyup.enter="signIn">
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" v-validate="'required|email'" v-model="username" @keyup.enter="signIn">
+      <div class="text-danger my-3">
+        {{ errors.first('email') }}
+      </div>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="password" @keyup.enter="signIn">
-<!--       <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div> -->
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="password" v-validate="{ required: true, regex: /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{6,20}$/ }" name="password" @keyup.enter="signIn">
+      <div  class="text-danger" v-if="errors.has('password')">
+        密碼必須是6-20位英數混合字，不可以輸入空白字元、特殊符號。
+      </div>
       <button class="btn btn-lg btn-primary btn-block mt-5" type="button" @click.prevent="signIn">
         Sign in
       </button>
+      <div class="d-flex justify-content-center">
+        <span class="h4 text-danger mt-4"> {{ errorMessage }} </span>
+      </div>
       <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
     </form>
   </div>
 </template>
 
 <script>
-
 export default {
   computed: {
     username: {
       get() {
-        return this.$store.state.authModule.username;
+        return this.$store.state.authModule.user.username;
       },
       set(value) {
         this.$store.commit('authModule/USER_NAME', value);
@@ -34,16 +37,25 @@ export default {
     },
     password: {
       get() {
-        return this.$store.state.authModule.password;
+        return this.$store.state.authModule.user.password;
       },
       set(value) {
         this.$store.commit('authModule/PASSWORD', value);
       },
     },
+    errorMessage() {
+      return this.$store.state.authModule.errorMessage;
+    },
   },
   methods: {
     signIn() {
-      this.$store.dispatch('authModule/signIn');
+      this.$validator.validate().then(result => {
+        if (!result) {
+          // do stuff if not valid.
+        } else {
+          this.$store.dispatch('authModule/signIn');
+        }
+      });
     },
     updateUserName(e) {
       this.$store.dispatch('authModule/updateUserName', e.target.value);
